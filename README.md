@@ -25,6 +25,8 @@ Each subdirectory contains files to run sample Nextflow pipelines.
 
 ## Sample Pipeline Directories
 
+(listed in recommended order for new users)
+
 - `print-samples`: Prints samples from a list to the terminal
 
 - `make-files`: Creates files based on sample ID inputs
@@ -40,6 +42,8 @@ Each subdirectory contains files to run sample Nextflow pipelines.
 - `join-pairs`: joining pairs of samples based on ID across input channels
 
 - `parse-samplesheet`: parsing of a samplesheet as input for Nextflow pipeline
+
+- `reporting`: execution of Nextflow pipeline with reporting and config features enabled. 
 
 # Usage
 
