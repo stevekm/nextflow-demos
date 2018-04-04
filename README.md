@@ -2,6 +2,14 @@
 
 Demonstrations of various programming techniques for use inside Nextflow pipelines.
 
+- an overview presentation about Nextflow can be found [here](https://github.com/stevekm/nextflow-demos/blob/docs/docs/Nextflow_presentation.pdf)
+
+- Nextflow HTML report examples can be found here:
+
+    - [pipeline report](https://htmlpreview.github.io/?https://github.com/stevekm/nextflow-demos/blob/report-output/reporting/nextflow-report.html)
+    
+    - [timeline report](https://htmlpreview.github.io/?https://github.com/stevekm/nextflow-demos/blob/report-output/reporting/timeline-report.html)
+
 # Install
 
 Clone this repo:
