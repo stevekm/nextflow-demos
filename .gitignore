@@ -3,3 +3,4 @@ nextflow
 */output/*
 .nextflow
 .nextflow.log*
+*.pyc
