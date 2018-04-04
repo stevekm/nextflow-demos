@@ -1,0 +1,26 @@
+digraph flowchart {
+p0 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.from"];
+p1 [label="make_file"];
+p0 -> p1 [label="samples"];
+
+p1 [label="make_file"];
+p4 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p1 -> p4 [label="sample_files"];
+
+p1 [label="make_file"];
+p2 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p1 -> p2 [label="sample_files2"];
+
+p2 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collectFile"];
+p3 [shape=point];
+p2 -> p3;
+
+p4 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="collect"];
+p5 [label="collect_files"];
+p4 -> p5;
+
+p5 [label="collect_files"];
+p6 [shape=point];
+p5 -> p6 [label="files"];
+
+}
