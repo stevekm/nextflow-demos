@@ -1,6 +1,6 @@
 # nextflow-demos
 
-Demonstrations of various programming techniques for use inside Nextflow pipelines. 
+Demonstrations of various programming techniques for use inside Nextflow pipelines.
 
 # Install
 
@@ -85,6 +85,8 @@ make clean
 - Nextflow examples: https://github.com/nextflow-io/examples
 
 - Pipeline examples: https://github.com/nextflow-io/awesome-nextflow
+
+- Boilerplate example for writing pipelines: https://github.com/stevekm/nextflow-boilerplate
 
 - NYU pipelines:
 
