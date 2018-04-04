@@ -24,13 +24,13 @@ clean-all: clean
 	rm -f trace.txt
 
 check-fastq:
-	fastqc --version > /dev/null 2>&1 || echo "ERROR: 'fastqc' not found" && exit 1
+	fastqc --version > /dev/null 2>&1 || { echo "ERROR: 'fastqc' not found" && exit 1 ; }
 
 check-docker:
-	docker --version > /dev/null 2>&1 || echo "ERROR: 'docker' not found" && exit 1
+	docker --version > /dev/null 2>&1 || { echo "ERROR: 'docker' not found" && exit 1 ; }
 
 check-module:
-	module > /dev/null 2>&1 || echo "ERROR: 'module' not found" && exit 1
+	module > /dev/null 2>&1 || { echo "ERROR: 'module' not found" && exit 1 ; }
 
 run: install check-fastq
 	./nextflow run main.nf -with-dag flowchart.dot
