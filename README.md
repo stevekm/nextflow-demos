@@ -24,13 +24,21 @@ Each subdirectory contains files to run sample Nextflow pipelines.
 
 ## Sample Pipeline Directories
 
-- `print_samples`: Prints samples from a list to the terminal
+- `print-samples`: Prints samples from a list to the terminal
 
-- `make_files`: Creates files based on sample ID inputs
+- `make-files`: Creates files based on sample ID inputs
 
-- `output_files`: Same as `make_files` but includes custom file output options
+- `output-files`: Same as `make-files` but includes custom file output options
 
-- `custom_email_output`: Creates files from sample ID's then sends the user an email with a pipeline summary and files attached
+- `custom-email-output`: Creates files from sample ID's then sends the user an email with a pipeline summary and files attached
+
+- `output-variable-name`: Same as `output-files` but includes inline variable definition of output file names
+
+- `R-Python`: methods for using other scripting languages inside the Nextflow pipeline
+
+- `join-pairs`: joining pairs of samples based on ID across input channels
+
+- `parse-samplesheet`: parsing of a samplesheet as input for Nextflow pipeline
 
 # Usage
 
@@ -45,6 +53,12 @@ make
 
 ```
 ./nextflow run main.nf
+```
+
+or
+
+```
+make run
 ```
 
 ## Cleanup
