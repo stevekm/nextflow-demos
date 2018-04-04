@@ -1,4 +1,3 @@
-// character strings in place of files for demonstration
 Channel.from(["Sample1"]).into { samples; samples2; samples3; samples4 }
 params.output_dir = "output"
 
