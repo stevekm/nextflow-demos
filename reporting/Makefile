@@ -15,6 +15,7 @@ clean:
 	rm -f timeline-report.html.*
 	rm -f trace.txt.*
 	rm -f nextflow-report.html.*
+	rm -rf flowchart.dot.*
 
 run: install
 	./nextflow run main.nf -with-dag flowchart.dot
