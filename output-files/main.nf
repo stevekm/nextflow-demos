@@ -18,3 +18,18 @@ process make_file {
     """
 }
 sample_files2.collectFile(name: 'sample_files.txt', storeDir: "${params.output_dir}")
+
+process gather_files {
+    publishDir "${params.output_dir}/gather_files", mode: 'copy', overwrite: true
+
+    input:
+    file("*") from sample_files.collect()
+
+    output:
+    file("output.txt")
+
+    script:
+    """
+    cat * > output.txt
+    """
+}
