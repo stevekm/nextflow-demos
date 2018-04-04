@@ -33,6 +33,8 @@ Each subdirectory contains files to run sample Nextflow pipelines.
 
 - `output-files`: Same as `make-files` but includes custom file output options
 
+- `async`: demonstration of asynchronous process execution
+
 - `custom-email-output`: Creates files from sample ID's then sends the user an email with a pipeline summary and files attached
 
 - `output-variable-name`: Same as `output-files` but includes inline variable definition of output file names
@@ -43,7 +45,9 @@ Each subdirectory contains files to run sample Nextflow pipelines.
 
 - `parse-samplesheet`: parsing of a samplesheet as input for Nextflow pipeline
 
-- `reporting`: execution of Nextflow pipeline with reporting and config features enabled. 
+- `reporting`: execution of Nextflow pipeline with reporting and config features enabled.
+
+- `profiles`: usage of 'profiles' to change process execution behavior 
 
 # Usage
 
