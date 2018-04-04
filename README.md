@@ -59,6 +59,8 @@ Each subdirectory contains files to run sample Nextflow pipelines.
 
 # Usage
 
+You can use the following commands inside the provided demo subdirs to run the demo pipelines. 
+
 ## Install Nextflow
 
 ```
