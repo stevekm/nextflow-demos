@@ -11,3 +11,6 @@ clean:
 	rm -f .nextflow.log*
 	rm -rf .nextflow*
 	rm -rf work
+
+run: install
+	./nextflow run main.nf

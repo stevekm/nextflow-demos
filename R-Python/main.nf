@@ -1,4 +1,4 @@
-Channel.from(["Sample1"]).into { samples; samples2; samples3; samples4 }
+Channel.from(["Sample1"]).into { samples; samples2; samples3; samples4; samples5 }
 params.output_dir = "output"
 
 process test_R {
@@ -50,13 +50,28 @@ process Python_inline {
     """
 }
 
+process Python_args {
+    echo true
+
+    input:
+    val(all_samples) from samples4.collect()
+
+    script:
+    """
+    python - ${all_samples} <<E0F
+import sys
+print("[Python_args] {0}".format(sys.argv))
+E0F
+    """
+}
+
 
 process R_inline {
     tag { "${sample}" }
     echo true
 
     input:
-    val(sample) from samples4
+    val(sample) from samples5
 
     script:
     """

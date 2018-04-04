@@ -12,3 +12,6 @@ clean:
 	rm -rf .nextflow*
 	rm -rf work
 	rm -rf output
+
+run: install
+	./nextflow run main.nf
