@@ -1,5 +1,6 @@
 # nextflow-demos
-Demo Nextflow pipelines
+
+Demonstrations of various programming techniques for use inside Nextflow pipelines. 
 
 # Install
 
