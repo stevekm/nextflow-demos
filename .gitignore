@@ -1,2 +1,5 @@
 nextflow
-work/*
+*/work/*
+*/output/*
+.nextflow
+.nextflow.log*

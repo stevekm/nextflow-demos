@@ -10,9 +10,7 @@ process make_file {
     val(sampleID) from samples
 
     output:
-    file("${sampleID}.txt") into sample_files
-    file("${sampleID}.txt") into sample_files2
-
+    file("${sampleID}.txt") into (sample_files, sample_files2)
 
     script:
     """
