@@ -7,7 +7,7 @@ Demonstrations of various programming techniques for use inside Nextflow pipelin
 - Nextflow HTML report examples can be found here:
 
     - [pipeline report](https://htmlpreview.github.io/?https://github.com/stevekm/nextflow-demos/blob/report-output/reporting/nextflow-report.html)
-    
+
     - [timeline report](https://htmlpreview.github.io/?https://github.com/stevekm/nextflow-demos/blob/report-output/reporting/timeline-report.html)
 
 # Install
@@ -55,11 +55,11 @@ Each subdirectory contains files to run sample Nextflow pipelines.
 
 - `reporting`: execution of Nextflow pipeline with reporting and config features enabled.
 
-- `profiles`: usage of 'profiles' to change process execution behavior 
+- `profiles-Docker-module`: usage of 'profiles' to change process execution behavior to use Docker or environment modules
 
 # Usage
 
-You can use the following commands inside the provided demo subdirs to run the demo pipelines. 
+You can use the following commands inside the provided demo subdirs to run the demo pipelines.
 
 ## Install Nextflow
 
