@@ -1,5 +1,5 @@
 Channel.from( ['Sample1','Sample2','Sample3','Sample4'] )
-        .into { samples }
+        .set { samples }
 
 process make_file {
     tag { "${sampleID}" }

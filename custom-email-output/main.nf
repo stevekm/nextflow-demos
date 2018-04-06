@@ -4,7 +4,7 @@ params.email_from = "${username}@${params.email_host}"
 params.email_to = "${username}@${params.email_host}"
 
 Channel.from( ['Sample1','Sample2','Sample3','Sample4'] )
-        .into { samples }
+        .set { samples }
 
 process make_file {
     tag { "${sampleID}" }
