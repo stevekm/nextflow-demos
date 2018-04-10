@@ -4,7 +4,7 @@ Channel.fromPath( "input/fastq/*.fastq.gz" )
 
 // contrived example
 process analyze_HapMaps {
-    tag { "${fastq}" }
+    tag "${fastq}"
     echo true
 
     input:
@@ -39,7 +39,7 @@ process analyze_HapMaps {
 // mock variant calling & downstream processing with different tools
 callers = ['LoFreq', 'HaplotypeCaller', 'MuTect2']
 process call_variants {
-    tag { "${fastq}" }
+    tag "${fastq}"
     echo true
 
     input:
@@ -67,7 +67,7 @@ process call_variants {
 }
 
 process annotate_variants {
-    tag { "${fastq}" }
+    tag "${fastq}"
     echo true
 
     input:

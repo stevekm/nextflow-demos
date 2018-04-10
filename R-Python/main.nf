@@ -2,7 +2,7 @@ Channel.from(["Sample1"]).into { samples; samples2; samples3; samples4; samples5
 params.output_dir = "output"
 
 process test_R {
-    tag { "${sample}" }
+    tag "${sample}"
     echo true
 
     input:
@@ -28,7 +28,7 @@ process test_Python {
 }
 
 process Python_inline {
-    tag { "${sample}" }
+    tag "${sample}"
     echo true
 
     input:
@@ -67,7 +67,7 @@ E0F
 
 
 process R_inline {
-    tag { "${sample}" }
+    tag "${sample}"
     echo true
 
     input:

@@ -3,7 +3,7 @@ Channel.from( ['Sample1','Sample2','Sample3','Sample4','Sample5','Sample6','Samp
 params.output_dir = "output"
 
 process make_file {
-    tag { "${sampleID}" }
+    tag "${sampleID}"
     publishDir "${params.output_dir}/make_file", mode: 'copy', overwrite: true
 
     input:
