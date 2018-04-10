@@ -20,7 +20,7 @@ samples_R1_R2.subscribe { println "\n[samples_R1_R2] ${it}\n"}
 samples_each_fastq.subscribe { println "[samples_each_fastq] ${it}"}
 
 process each_fastq {
-    tag { "${fastq}" }
+    tag "${fastq}"
     echo true
 
     input:
