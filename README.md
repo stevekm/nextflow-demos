@@ -57,6 +57,8 @@ Each subdirectory contains files to run sample Nextflow pipelines.
 
 - `profiles-Docker-module`: usage of 'profiles' to change process execution behavior to use Docker or environment modules
 
+- `Groovy-code`: example of using inline Groovy code inside the Nextflow pipeline
+
 # Usage
 
 You can use the following commands inside the provided demo subdirs to run the demo pipelines.
