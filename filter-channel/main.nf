@@ -68,3 +68,19 @@ Channel.from([
     .set { demo_vcfs }
 
 demo_vcfs.subscribe { println "[demo_vcfs] ${it}" }
+
+
+// check if file exists
+Channel.from([
+    ['bad1', file('input/bad1.vcf')],
+    ['good1', file('input/good1.vcf')],
+    ['foo', file('input/foo.vcf')]
+    ])
+    .filter { sampleID, sample_vcf ->
+        def file_exists = sample_vcf.exists()
+        if (! file_exists) println ">>> WARNING: File ${sample_vcf} does not exist and will not be included"
+        file_exists
+    }
+    .set { demo_exists }
+
+demo_exists.subscribe { println "[demo_exists] ${it}" }
