@@ -6,6 +6,16 @@ params.email_to = "${username}@${params.email_host}"
 Channel.from( ['Sample1','Sample2','Sample3','Sample4'] )
         .set { samples }
 
+// send mail anywhere in the pipeline
+sendMail {
+  from "${params.email_to}"
+  to "${params.email_from}"
+  subject '[sendMail]'
+  '''
+  hello
+  '''
+}
+
 process make_file {
     tag "${sampleID}"
 
@@ -13,7 +23,7 @@ process make_file {
     val(sampleID) from samples
 
     output:
-    file("${sampleID}.txt") into sample_files
+    file("${sampleID}.txt") into (sample_files, sample_files2, sample_files3)
 
     script:
     """
@@ -21,8 +31,39 @@ process make_file {
     """
 }
 
-def attachments = sample_files.toList().getVal()
+// send mail from a process
+process send_file {
+  input:
+  val mail from sample_files2.collect()
 
+  exec:
+  sendMail {
+    from "${params.email_to}"
+    to "${params.email_from}"
+    subject '[send_file]'
+    attach mail
+    '''
+    Check the attachment
+    '''
+  }
+}
+
+// send mail from a channel
+sample_files3.collect()
+            .subscribe { attachments_list ->
+                sendMail {
+                  from "${params.email_to}"
+                  to "${params.email_from}"
+                  subject '[sample_files3]'
+                  attach attachments_list
+                  '''
+                  Check the attachment
+                  '''
+                }
+            }
+
+// send mail upon workflow completion
+def attachments = sample_files.toList().getVal()
 workflow.onComplete {
     def status = "NA"
     if(workflow.success) {
