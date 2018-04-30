@@ -4,3 +4,7 @@ nextflow
 .nextflow
 .nextflow.log*
 *.pyc
+nextflow-report.html
+timeline-report.html
+trace.txt
+flowchart.*
