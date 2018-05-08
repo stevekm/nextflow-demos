@@ -1,5 +1,9 @@
 SHELL:=/bin/bash
-NXF_VER:=0.28.0
+NXF_VER:=0.29.0
+
+run: install
+	./nextflow run main.nf && \
+	./nextflow run email.nf
 
 install: ./nextflow
 
@@ -11,7 +15,4 @@ clean:
 	rm -f .nextflow.log*
 	rm -rf .nextflow*
 	rm -rf work
-
-
-run: install
-	./nextflow run main.nf
+	rm -rf output

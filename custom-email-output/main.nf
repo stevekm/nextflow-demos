@@ -17,6 +17,7 @@ sendMail {
 }
 
 process make_file {
+    publishDir "output/email/attachments", mode: "copy"
     tag "${sampleID}"
 
     input:
@@ -100,11 +101,19 @@ workflow.onComplete {
         """
         .stripIndent()
 
+    def subject = "[custom_email_output] ${status}"
+
+    // save a copy of the email message and subject line
+    def email_body = new File("output/email/body.txt")
+    email_body.write "${msg}".stripIndent()
+    def email_subject = new File("output/email/subject.txt")
+    email_subject.write "${subject}"
+
     sendMail {
         to "${params.email_to}"
         from "${params.email_from}"
         attach attachments
-        subject "[custom_email_output] ${status}"
+        subject
         body
         """
         ${msg}
