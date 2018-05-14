@@ -84,3 +84,26 @@ Channel.from([
     .set { demo_exists }
 
 demo_exists.subscribe { println "[demo_exists] ${it}" }
+
+
+// choose based on the number of lines in file
+Channel.fromPath("input/*").set { input_files }
+good_inputs = Channel.create()
+bad_inputs = Channel.create()
+input_files.choice( good_inputs, bad_inputs ){ item ->
+        println item
+        def output = 1 // bad by default
+        long count = item.readLines().size()
+        if (count > 3) output = 0 // good if has >3 lines
+        return output
+    }
+
+good_inputs.subscribe { println "[good_inputs] ${it}" }
+// save a message in a log file about the bad files
+bad_inputs.map { item ->
+    def reason = "Too few lines"
+    def output = [reason, item].join('\t')
+    return(output)
+}.collectFile(storeDir: '.', name: 'bad_inputs.txt', newLine: true)
+good_inputs.close()
+bad_inputs.close()
