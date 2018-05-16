@@ -1,4 +1,3 @@
-// printf 'foo' > demo1.tsv; printf 'foo\nbar' > demo2.tsv; printf 'foo' > demo3.tsv; printf 'foo' > demo4.tsv; printf 'foo\nbar' > demo5.tsv
 Channel.from([
     ['demo1', file('demo1.tsv')],
     ['demo2', file('demo2.tsv')],
@@ -30,10 +29,6 @@ first_inputs.choice( good_first_inputs, bad_first_inputs ){ items ->
     return(output)
     }
 
-// good_first_inputs.subscribe { println "[good_first_inputs] ${it}" }
-// bad_first_inputs.subscribe { println "[bad_first_inputs] ${it}" }
-
-
 second_inputs.choice( good_second_inputs, bad_second_inputs ){ items ->
     def output = 1 // bad by default
     def sampleID = items[0]
@@ -44,11 +39,22 @@ second_inputs.choice( good_second_inputs, bad_second_inputs ){ items ->
     return(output)
     }
 
-// good_second_inputs.subscribe { println "[good_second_inputs] ${it}" }
-// bad_second_inputs.subscribe { println "[bad_second_inputs] ${it}" }
+all_good_inputs.mix(good_first_inputs, good_second_inputs).map{ items ->
+    def sampleID = items[0]
+    def fileName = items[1]
+    def reason = "File has enough lines"
+    def output = [reason, sampleID, fileName].join('\t')
+    return(output)
+    }.collectFile(storeDir: '.', name: 'all_good_inputs.txt', newLine: true)
 
-all_good_inputs.mix(good_first_inputs, good_second_inputs).subscribe { println "[all_good_inputs] ${it}" }
-// .collectFile(storeDir: '.', name: 'all_good_inputs.txt', newLine: true)
+all_bad_inputs.mix(bad_first_inputs, bad_second_inputs).map { items ->
+    def sampleID = items[0]
+    def fileName = items[1]
+    def reason = "Not enough lines in file"
+    def output = [reason, sampleID, fileName].join('\t')
+    return(output)
+    }
+    .collectFile(storeDir: '.', name: 'all_bad_inputs.txt', newLine: true)
 
-all_bad_inputs.mix(bad_first_inputs, bad_second_inputs).subscribe { println "[all_bad_inputs] ${it}" }
-// .collectFile(storeDir: '.', name: 'all_bad_inputs.txt', newLine: true)
+all_good_inputs.close()
+all_bad_inputs.close()
