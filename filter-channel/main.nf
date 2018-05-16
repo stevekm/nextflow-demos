@@ -105,5 +105,3 @@ bad_inputs.map { item ->
     def output = [reason, item].join('\t')
     return(output)
 }.collectFile(storeDir: '.', name: 'bad_inputs.txt', newLine: true)
-good_inputs.close()
-bad_inputs.close()
