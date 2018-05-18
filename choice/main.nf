@@ -15,9 +15,24 @@ Channel.from([
 good_second_inputs = Channel.create()
 bad_second_inputs = Channel.create()
 
-all_bad_inputs = Channel.create()
-all_good_inputs = Channel.create()
+// dummy processes to create channels
+process start_good {
+    input:
+    val(foo) from Channel.from("")
+    output:
+    val(foo) into all_good_inputs
+    exec:
+    sleep(0)
+}
 
+process start_bad {
+    input:
+    val(foo) from Channel.from("")
+    output:
+    val(foo) into all_bad_inputs
+    exec:
+    sleep(0)
+}
 
 first_inputs.choice( good_first_inputs, bad_first_inputs ){ items ->
     def output = 1 // bad by default
@@ -39,15 +54,23 @@ second_inputs.choice( good_second_inputs, bad_second_inputs ){ items ->
     return(output)
     }
 
-all_good_inputs.mix(good_first_inputs, good_second_inputs).map{ items ->
+all_good_inputs.filter { line ->
+        line != ""
+    }
+    .mix(good_first_inputs, good_second_inputs)
+    .map{ items ->
     def sampleID = items[0]
     def fileName = items[1]
     def reason = "File has enough lines"
     def output = [reason, sampleID, fileName].join('\t')
     return(output)
-    }.collectFile(storeDir: '.', name: 'all_good_inputs.txt', newLine: true)
+    }
+    .collectFile(storeDir: '.', name: 'all_good_inputs.txt', newLine: true)
 
-all_bad_inputs.mix(bad_first_inputs, bad_second_inputs).map { items ->
+all_bad_inputs.filter { line ->
+        line != ""
+    }
+    .mix(bad_first_inputs, bad_second_inputs).map { items ->
     def sampleID = items[0]
     def fileName = items[1]
     def reason = "Not enough lines in file"
@@ -55,6 +78,3 @@ all_bad_inputs.mix(bad_first_inputs, bad_second_inputs).map { items ->
     return(output)
     }
     .collectFile(storeDir: '.', name: 'all_bad_inputs.txt', newLine: true)
-
-all_good_inputs.close()
-all_bad_inputs.close()
