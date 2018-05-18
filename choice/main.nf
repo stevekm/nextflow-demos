@@ -15,24 +15,8 @@ Channel.from([
 good_second_inputs = Channel.create()
 bad_second_inputs = Channel.create()
 
-// dummy processes to create channels
-process start_good {
-    input:
-    val(foo) from Channel.from("")
-    output:
-    val(foo) into all_good_inputs
-    exec:
-    sleep(0)
-}
-
-process start_bad {
-    input:
-    val(foo) from Channel.from("")
-    output:
-    val(foo) into all_bad_inputs
-    exec:
-    sleep(0)
-}
+Channel.from('').set{ all_good_inputs }
+Channel.from('').set{ all_bad_inputs }
 
 first_inputs.choice( good_first_inputs, bad_first_inputs ){ items ->
     def output = 1 // bad by default
