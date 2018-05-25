@@ -8,3 +8,5 @@ nextflow-report.html
 timeline-report.html
 trace.txt
 flowchart.*
+.Rproj.user/
+*.Rproj
