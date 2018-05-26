@@ -10,3 +10,5 @@ trace.txt
 flowchart.*
 .Rproj.user/
 *.Rproj
+.DS_Store
+.Rproj.user

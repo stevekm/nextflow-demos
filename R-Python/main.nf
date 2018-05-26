@@ -1,4 +1,4 @@
-Channel.from(["Sample1"]).into { samples; samples2; samples3; samples4; samples5 }
+Channel.from(["Sample1"]).into { samples; samples2; samples3; samples4; samples5; samples6 }
 params.output_dir = "output"
 
 process test_R {
@@ -90,5 +90,19 @@ process R_inline {
 
     x <- "${sample}"
     print(sprintf("[R_inline] the sample is: %s", x))
+    """
+}
+
+process R_args {
+    echo true
+
+    input:
+    val(all_samples) from samples6.collect()
+
+    script:
+    """
+    Rscript --vanilla - ${all_samples} <<E0F
+print(sprintf("[R_args] %s", commandArgs(T)))
+E0F
     """
 }
