@@ -51,6 +51,12 @@ Launching `plots.nf` [modest_kilby] - revision: 4c19e53841
 [8e/0f0144] Submitted process > report (1)
 ```
 
+Example report outputs can be found here:
+
+- [people.html](https://rawgit.com/stevekm/nextflow-demos/aggr-reports/aggregate-db-report/output/people/people.html)
+
+- [plots.html](https://rawgit.com/stevekm/nextflow-demos/aggr-reports/aggregate-db-report/output/plots/plots.html)
+
 # Software
 
 - SQLite
