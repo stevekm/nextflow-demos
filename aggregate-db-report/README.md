@@ -6,7 +6,7 @@ A demonstration of using a database to store data produced during your Nextflow 
 
 - `people.nf`: a more generic workflow that downloads images of British royalty, stores the images along with metadata in databases, then passes them to a report.
 
-During data analysis workflows, it is common to analyze many datasets in parallel. Nextflow makes this process very easy. Generating summary reports based on that data can often require the propagation of the original data and/or metadata, which may not be as easy with Nextflow, especially if the output includes binary data such as images and objects. To help with this task, a database can be used to store the required metadata along with objects and figures for consumption by the reporting program.
+During data analysis workflows, it is common to analyze many datasets in parallel. Nextflow makes this process very easy. Generating summary reports based on that data can often require maintaining the association between datasets, analysis output, and various metadata, which may not be as easy with Nextflow, especially if the output includes binary data such as images and objects. To help with this task, a database can be used to store the required metadata along with objects and figures for consumption by the downstream reporting program.
 
 __NOTE:__ This is presented for demonstration purposes only and does not necessarily represent best programming practices.
 
