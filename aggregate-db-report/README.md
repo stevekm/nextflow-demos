@@ -10,6 +10,8 @@ During data analysis workflows, it is common to analyze many datasets in paralle
 
 __NOTE:__ This is presented for demonstration purposes only and does not necessarily represent best programming practices.
 
+__NOTE:__ SQLite is used here for simplicity. However real-life implementations would likely benefit from using a database server like MySQL, PostgreSQL, etc.
+
 ## Usage
 
 Pipeline can be run using the included `Makefile` with the command:
