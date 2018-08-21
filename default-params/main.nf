@@ -1,15 +1,22 @@
 // default input file to use
 def default_input = "foo.txt"
+def default_input_obj = new File("${default_input}")
 
 // initialize CLI params to default value
-params.input = default_input
+params.input = null
 
 // variable to use throughout the workflow
 def input
 
 // check if CLI arg was passed; if so, use that instead
-if(params.input == default_input){
-    input = default_input
+if(params.input == null ){
+    // make sure the default input object exists too
+    if(default_input_obj.exists()){
+        input = default_input
+    } else {
+        log.error("No input specified and default input ${default_input} does not exist")
+        exit 1
+    }
 } else {
     input = params.input
 }
@@ -35,6 +42,12 @@ log.info("~~~~~~~~~~~~~~~~~~~~~~~~")
 
 // make sure the input is a real file or dir
 def input_obj = new File("${input}")
+
+// check the full path to the input
+def input_obj_path = input_obj.getCanonicalPath()
+log.info("path to input: ${input_obj_path}")
+
+// make sure the input exists
 if( !input_obj.exists() ){
     log.error "Input is not a file or dir: ${input}"
     exit 1
