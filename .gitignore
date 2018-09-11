@@ -12,3 +12,4 @@ flowchart.*
 *.Rproj
 .DS_Store
 .Rproj.user
+*.simg
