@@ -10,7 +10,7 @@ In this example, several conditions are evaluated in order to determine the "bes
 
 3. If neither of those conditions are valid, then a default queue will be used
 
-The purpose of this is to allow for load balancing for better job execution performance on the cluster. By reading in the cluster status from a file instead of it also prevents the system from being strained by numerous `sinfo`, etc., queries in a rapid time frame. It also allows the end user to determine their own criteria for determining the "best queue" to use based on current cluster resources. The `queue.json` file can be updated at regular intervals by a dedicated external process (e.g. every 15 minutes), such as with the simple [queue-stats](https://github.com/NYU-Molecular-Pathology/queue-stats) program for SLURM.
+The purpose of this is to allow for load balancing for better job execution performance on the cluster. By reading in the cluster status from a file it prevents the system from being strained by numerous `sinfo`, etc., queries in a rapid time frame. It also allows the end user to determine their own criteria for determining the "best queue" to use based on current cluster resources. The `queue.json` file can be updated at regular intervals by a dedicated external process (e.g. every 15 minutes), such as with the simple [queue-stats](https://github.com/NYU-Molecular-Pathology/queue-stats) program for SLURM.
 
 # Usage
 
