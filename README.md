@@ -1,6 +1,6 @@
 # nextflow-demos
 
-Demonstrations of various programming techniques for use inside [Nextflow](https://www.nextflow.io/) pipelines. This repository is meant to be a supplement to the official Nextflow documentation (links below).
+Demonstrations of various programming techniques for use inside [Nextflow](https://www.nextflow.io/) pipelines. This repository is meant to be a supplement to the [official Nextflow documentation](https://www.nextflow.io/docs/latest/getstarted.html) (links below).
 
 - an overview presentation about Nextflow can be found [here](https://github.com/stevekm/nextflow-demos/blob/docs/docs/Nextflow_presentation.pdf) (view [here](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/stevekm/nextflow-demos/docs/docs/Nextflow_presentation.pdf))
 
