@@ -12,6 +12,7 @@ On `-resume`:
 
 - an uncached process output will be re-copied to publishDir if `overwrite: true` is specified (`gather_files4`; `publishDir "${params.output_dir}", mode: 'copy', overwrite: true`)
 
+- a file removed from the `publishDir` will be re-copied with the latest available version regardless of the process's cached/uncached status
 
 ## Usage
 
@@ -26,77 +27,113 @@ make run
 The terminal output should look like this:
 
 ```
-$ ./nextflow run main.nf
+$ make run
+./nextflow run main.nf
 N E X T F L O W  ~  version 19.01.0
-Launching `main.nf` [maniac_mccarthy] - revision: 5546e69de0
+Launching `main.nf` [naughty_gautier] - revision: 8a4644003d
 ~~~~~~~~~~~~~~~~~~~~~
-a17bf2df-fae4-42b8-9be4-1b260505113c maniac_mccarthy
+42af0f7f-8e42-4560-bab6-db8d77ffc5d1 naughty_gautier
 [warm up] executor > local
-[58/06786b] Submitted process > make_file (3)
-[02/c6583d] Submitted process > make_file (1)
-[90/234450] Submitted process > make_file (2)
-[7c/402834] Submitted process > make_file (4)
-[00/41701b] Submitted process > gather_files2
-[73/31ecc0] Submitted process > gather_files1
-[14/a68aa9] Submitted process > gather_files4
-[be/7f613f] Submitted process > gather_files3
+[b4/fead77] Submitted process > make_file (2)
+[61/5b5657] Submitted process > make_file (1)
+[86/cec677] Submitted process > make_file (4)
+[19/e92001] Submitted process > make_file (3)
+[c2/b1000f] Submitted process > gather_files1
+[2a/39f7c1] Submitted process > gather_files2
+[2b/a89310] Submitted process > gather_files3
+[81/87f35e] Submitted process > gather_files4
 ls -l output
 total 64
--rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 15:10 Sample1.txt
--rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 15:10 Sample2.txt
--rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 15:10 Sample3.txt
--rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 15:10 Sample4.txt
--rw-r--r--  1 kellys04  NYUMC\Domain Users   80 Mar  4 15:10 output1.txt
--rw-r--r--  1 kellys04  NYUMC\Domain Users   80 Mar  4 15:10 output2.txt
--rw-r--r--  1 kellys04  NYUMC\Domain Users  133 Mar  4 15:10 output3.txt
--rw-r--r--  1 kellys04  NYUMC\Domain Users  133 Mar  4 15:10 output4.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample1.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample2.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample3.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample4.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   80 Mar  4 16:16 output1.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   80 Mar  4 16:16 output2.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users  133 Mar  4 16:16 output3.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users  133 Mar  4 16:16 output4.txt
 cat output/output3.txt
 [make_file] Sample1
 [make_file] Sample2
 [make_file] Sample3
 [make_file] Sample4
-a17bf2df-fae4-42b8-9be4-1b260505113c maniac_mccarthy
+42af0f7f-8e42-4560-bab6-db8d77ffc5d1 naughty_gautier
 cat output/output4.txt
 [make_file] Sample1
 [make_file] Sample2
 [make_file] Sample3
 [make_file] Sample4
-a17bf2df-fae4-42b8-9be4-1b260505113c maniac_mccarthy
+42af0f7f-8e42-4560-bab6-db8d77ffc5d1 naughty_gautier
 sleep 60
 ./nextflow run -resume main.nf
 N E X T F L O W  ~  version 19.01.0
-Launching `main.nf` [chaotic_tuckerman] - revision: 5546e69de0
+Launching `main.nf` [sharp_bhabha] - revision: 8a4644003d
 ~~~~~~~~~~~~~~~~~~~~~
-a17bf2df-fae4-42b8-9be4-1b260505113c chaotic_tuckerman
+42af0f7f-8e42-4560-bab6-db8d77ffc5d1 sharp_bhabha
 [warm up] executor > local
-[58/06786b] Cached process > make_file (3)
-[90/234450] Cached process > make_file (2)
-[7c/402834] Cached process > make_file (4)
-[02/c6583d] Cached process > make_file (1)
-[00/41701b] Cached process > gather_files2
-[73/31ecc0] Cached process > gather_files1
-[63/a44fe0] Submitted process > gather_files4
-[23/7a0617] Submitted process > gather_files3
+[b4/fead77] Cached process > make_file (2)
+[86/cec677] Cached process > make_file (4)
+[61/5b5657] Cached process > make_file (1)
+[19/e92001] Cached process > make_file (3)
+[c2/b1000f] Cached process > gather_files1
+[2a/39f7c1] Cached process > gather_files2
+[8c/588599] Submitted process > gather_files3
+[04/1deb4c] Submitted process > gather_files4
 ls -l output
 total 64
--rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 15:10 Sample1.txt
--rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 15:10 Sample2.txt
--rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 15:10 Sample3.txt
--rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 15:10 Sample4.txt
--rw-r--r--  1 kellys04  NYUMC\Domain Users   80 Mar  4 15:10 output1.txt
--rw-r--r--  1 kellys04  NYUMC\Domain Users   80 Mar  4 15:11 output2.txt
--rw-r--r--  1 kellys04  NYUMC\Domain Users  135 Mar  4 15:11 output3.txt
--rw-r--r--  1 kellys04  NYUMC\Domain Users  135 Mar  4 15:11 output4.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample1.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample2.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample3.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample4.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   80 Mar  4 16:16 output1.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   80 Mar  4 16:17 output2.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users  130 Mar  4 16:17 output3.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users  130 Mar  4 16:17 output4.txt
 cat output/output3.txt
 [make_file] Sample1
 [make_file] Sample2
 [make_file] Sample3
 [make_file] Sample4
-a17bf2df-fae4-42b8-9be4-1b260505113c chaotic_tuckerman
+42af0f7f-8e42-4560-bab6-db8d77ffc5d1 sharp_bhabha
 cat output/output4.txt
 [make_file] Sample1
 [make_file] Sample2
 [make_file] Sample3
 [make_file] Sample4
-a17bf2df-fae4-42b8-9be4-1b260505113c chaotic_tuckerman
+42af0f7f-8e42-4560-bab6-db8d77ffc5d1 sharp_bhabha
+sleep 60
+rm -f output/output1.txt
+ls -l output
+total 56
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample1.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample2.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample3.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample4.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   80 Mar  4 16:17 output2.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users  130 Mar  4 16:17 output3.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users  130 Mar  4 16:17 output4.txt
+./nextflow run -resume main.nf
+N E X T F L O W  ~  version 19.01.0
+Launching `main.nf` [pensive_torvalds] - revision: 8a4644003d
+~~~~~~~~~~~~~~~~~~~~~
+42af0f7f-8e42-4560-bab6-db8d77ffc5d1 pensive_torvalds
+[warm up] executor > local
+[b4/fead77] Cached process > make_file (2)
+[19/e92001] Cached process > make_file (3)
+[61/5b5657] Cached process > make_file (1)
+[86/cec677] Cached process > make_file (4)
+[2a/39f7c1] Cached process > gather_files2
+[c2/b1000f] Cached process > gather_files1
+[68/23d115] Submitted process > gather_files4
+[d3/5494c1] Submitted process > gather_files3
+ls -l output
+total 64
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample1.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample2.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample3.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   20 Mar  4 16:16 Sample4.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   80 Mar  4 16:18 output1.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users   80 Mar  4 16:18 output2.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users  134 Mar  4 16:18 output3.txt
+-rw-r--r--  1 kellys04  NYUMC\Domain Users  134 Mar  4 16:18 output4.txt
 ```

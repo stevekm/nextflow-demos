@@ -21,3 +21,8 @@ run: install
 	ls -l output
 	cat output/output3.txt
 	cat output/output4.txt
+	sleep 60
+	rm -f output/output1.txt
+	ls -l output
+	./nextflow run -resume main.nf
+	ls -l output
