@@ -31,12 +31,12 @@ def num_lines(fname):
 inputFile_numlines = num_lines(inputFile)
 
 # the size that each chunk should be, except for the remainder
-chunk_size  = inputFile_numlines / num_chunks
+chunk_size  = inputFile_numlines // num_chunks
 
 # read the input lines
 with open(inputFile) as f:
     for i, line in enumerate(f):
-        chunk_num = i / chunk_size
+        chunk_num = i // chunk_size
         # filename label
         chunk_label = chunk_num + 1
         # put the remainder into the last file

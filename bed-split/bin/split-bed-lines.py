@@ -30,12 +30,12 @@ def num_lines(fname):
 
 # total number of file lines
 inputFile_numlines = num_lines(inputFile)
-total_chunks = inputFile_numlines / num_chunk_lines
+total_chunks = inputFile_numlines // num_chunk_lines
 
 # read the input lines
 with open(inputFile) as f:
     for i, line in enumerate(f):
-        chunk_num = i / num_chunk_lines
+        chunk_num = i // num_chunk_lines
         # filename label
         chunk_label = chunk_num + 1
 
