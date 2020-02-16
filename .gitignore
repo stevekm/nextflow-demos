@@ -13,3 +13,5 @@ flowchart.*
 .DS_Store
 .Rproj.user
 *.simg
+conda/*
+*/conda/*
