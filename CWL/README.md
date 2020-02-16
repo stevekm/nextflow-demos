@@ -16,6 +16,8 @@ This simple pipeline will process four "samples", create a custom text file for 
 
 The pipeline has two modes of operation: 'zip' mode and 'tar' mode, corresponding to the archive format to be used.
 
+We will be using the CWL pipelines contained in the `cwl` directory: `echo.cwl`, `zip.cwl`, and `tar.cwl`.
+
 ## Installation
 
 We need a handful of dependencies for this demonstration, so first run:
