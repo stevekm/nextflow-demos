@@ -77,7 +77,7 @@ Sample1.message.zip Sample3.message.zip
 
 We can see that there were 4 samples input in the pipeline. However, 'Sample4' was detected as being "bad" and was removed from the pipeline before it could break anything. On the other hand, 'Sample2' was also bad and managed to break a pipeline step, however the pipeline was able to continue to completion despite the failure. Ultimately, only two samples passed all pipeline steps and made it to the end for processing.
 
-You will notice the command line argument `--archive_type "zip"`, which tells the pipeline to output .zip items via the `zip_message` workflow task. We can change this 'tar' to get the output in a .tar.gz file instead. For convenience, the Makefile has been set up to allow you to pass this through.
+You will notice the command line argument `--archive_type "zip"`, which tells the pipeline to output .zip items via the `zip_message` workflow task. We can change this to 'tar' to get the output in a .tar.gz file instead. For convenience, the Makefile has been set up to allow you to pass this through.
 
 ```
 $ make run TYPE=tar
@@ -116,4 +116,4 @@ Sample1.message.tar.gz Sample3.message.tar.gz
 
 This time, we got files for the same set of samples, but they were passed through the `tar_message` which produced .tar.gz files.
 
-You will also notice some extra items output; `trace.txt`, `nextflow.html`, `timeline.html`, and `dag.png`. These are logs, reports, and visualizations of the workflow that was executed.
+You will also notice some extra items output in the current directory; `trace.txt`, `nextflow.html`, `timeline.html`, and `dag.png`. These are logs, reports, and visualizations of the workflow that was executed.
