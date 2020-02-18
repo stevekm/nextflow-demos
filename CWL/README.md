@@ -2,7 +2,7 @@
 
 This directory contains a demonstration of a method for running CWL pipelines with Nextflow.
 
-Many people have pre-established pipelines written in CWL, but may desired to use some of the features of Nextflow. This demo will show how to use your currently existing CWL while making use of some convenient Nextflow features such as:
+Many people have pre-established pipelines written in CWL, but may desire to use some of the features of Nextflow. This demo will show how to use your currently existing CWL while making use of some convenient Nextflow features such as:
 
 - pre-filtering of task inputs to prevent 'bad' samples from getting through
 
