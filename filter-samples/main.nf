@@ -1,60 +1,58 @@
 params.archiveType = "zip"
 
-// make a file with some contents
-process create_message {
-    tag "${sampleID}"
+def input_samples = [
+['Sample1', 1],
+['Sample2', 2],
+['Sample3', 3],
+['Sample4', 4]
+]
 
-    input:
-    val(sampleID) from Channel.from(['Sample1', 'Sample2', 'Sample3', 'Sample4'])
+log.info "~~~~~ Starting Workflow ~~~~~"
+log.info "archiveType: ${params.archiveType}"
+log.info "input_samples: ${input_samples}"
+log.info "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
-    output:
-    set val(sampleID), file("${output_file}") into messages, messages2
+sample_values = Channel.from(input_samples)
 
-    script:
-    output_file = "message.txt"
-    """
-    echo "${sampleID} says: Hello World" > "${output_file}"
-    """
-}
-
-// print to console so we know we got the file and its message
-process print_message {
+process create_file {
+    // make a file with some contents
     tag "${sampleID}"
     echo true
 
     input:
-    set val(sampleID), file(message_txt) from messages
+    set val(sampleID), val(sampleVal) from sample_values
 
     output:
-    set val(sampleID), file(message_txt) into printed_messages
+    set val(sampleID), file("${output_file}") into sample_files, sample_files2
 
     script:
+    output_file = "${sampleID}.data.txt"
     """
-    printf "Got message for ${sampleID}: %s\n" "\$(cat ${message_txt})"
+    for i in \$(seq ${sampleVal}); do
+        echo ${sampleID} >> "${output_file}"
+    done
     """
 }
 
-// dont process anything called "Sample4"
-good_samples = Channel.create()
-bad_samples = Channel.create()
+// print to console the files that we created
+sample_files2.subscribe { log.info "Got items: ${it} " }
 
-printed_messages.choice(good_samples, bad_samples){ items ->
-    def sampleID = items[0]
-    def message_txt = items[1]
-    def output = 1 // bad by default
-    if (sampleID != "Sample4") output = 0
-    return(output)
-}
+// do not process anything with <2 lines
+import java.nio.file.Files;
+sample_files.filter { sampleID, sampleFile ->
+    long count = Files.lines(sampleFile).count()
+    if (count <= 1) log.warn "File for ${sampleID} has too few lines and will be removed"
+    count > 1
+}.set { sample_files_filtered }
 
-bad_samples.subscribe{ sampleID, message_txt ->
-    log.info "WARNING: bad sample was filtered out from downstream processing: ${sampleID}"
-}
+
 
 process create_archive {
+    // make an archive for each sample's data
     tag "(${params.archiveType}) ${sampleID}"
 
     input:
-    set val(sampleID), file(message_txt) from good_samples
+    set val(sampleID), file(message_txt) from sample_files_filtered
 
     output:
     set val(sampleID), val("${params.archiveType}"), file("${output_file}") into archived_messages
@@ -77,8 +75,8 @@ process create_archive {
 }
 
 
-// Sample2 is destined for failure!
 process please_dont_break {
+    // Sample2 is destined for failure!
     tag "${sampleID}"
     echo true
     errorStrategy "ignore"
@@ -103,7 +101,6 @@ successful_messages.groupTuple().set { grouped_messages }
 
 process gather_files {
     echo true
-
     publishDir "output"
 
     input:

@@ -15,3 +15,5 @@ flowchart.*
 *.simg
 conda/*
 */conda/*
+timeline.html
+nextflow.html
