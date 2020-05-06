@@ -8,7 +8,7 @@ Additionally, it will be made available inside any container from which your tas
 
 This demo uses the `python:3` Docker container to execute a custom script, `bin/divide.py`, on a series of values. One set of values results in a divide by zero error.
 
-The error can be fixed by simply updating the `divide.py` script to use a `try/except` to catch the error.
+The error can be fixed by updating the `divide.py` script to use a `try/except` to catch the error.
 
 In this way, we can easily debug custom scripts used in a Nextflow pipeline without having to rebuild the container image that holds their runtime requirements.
 
@@ -58,7 +58,7 @@ Command error:
   ZeroDivisionError: float division by zero
 
 Work dir:
-  /Users/steve/projects/nextflow-demos/bin-dir-container-debugging/work/b3/dda1df96c554b5df36515cb8ef2dd0
+  /Users/steve/projects/nextflow-demos/bin-dir-container-debugging/work/48/5e8bc76fe86cf94e19c79c1ede9497
 
 Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh`
 ```
