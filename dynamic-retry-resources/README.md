@@ -16,15 +16,21 @@ Run the workflow with default allocations; it should start with 1GB memory and 1
 ```
 $ ./nextflow run main.nf
 N E X T F L O W  ~  version 19.10.0
-Launching `main.nf` [reverent_kalam] - revision: f045ab05e7
+Launching `main.nf` [desperate_pike] - revision: 0c2d572de9
+~~~~ Starting Workflow Configuration ~~~~~
+memory: 1GB
+time: 10m
+maxRetries: 3
+errorStrategy: retry
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 executor >  local (3)
-[ae/6d65a8] process > run_task (3) [100%] 3 of 3, failed: 2 ✔
+[e0/80d7f7] process > run_task (attempt 3) [100%] 3 of 3, failed: 2 ✔
 task.attempt: 3
 task.memory: 3 GB
 task.time: 30m
 
-[fd/14e80a] NOTE: Process `run_task (1)` terminated with an error exit status (1) -- Execution is retried (1)
-[5d/6d0289] NOTE: Process `run_task (2)` terminated with an error exit status (1) -- Execution is retried (2)
+[ae/bea054] NOTE: Process `run_task (attempt 1)` terminated with an error exit status (1) -- Execution is retried (1)
+[51/b25db4] NOTE: Process `run_task (attempt 2)` terminated with an error exit status (1) -- Execution is retried (2)
 ```
 
 Try passing different combinations of resource allocations from the command line.
@@ -32,27 +38,39 @@ Try passing different combinations of resource allocations from the command line
 ```
 $ ./nextflow run main.nf --memory 1.2MB --time 2m10s --maxRetries 2
 N E X T F L O W  ~  version 19.10.0
-Launching `main.nf` [chaotic_mahavira] - revision: f045ab05e7
+Launching `main.nf` [gigantic_baekeland] - revision: 0c2d572de9
+~~~~ Starting Workflow Configuration ~~~~~
+memory: 1.2MB
+time: 2m10s
+maxRetries: 2
+errorStrategy: retry
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 executor >  local (2)
-[8e/cb5cf1] process > run_task (2) [100%] 2 of 2, failed: 1 ✔
+[8e/834dea] process > run_task (attempt 2) [100%] 2 of 2, failed: 1 ✔
 task.attempt: 2
 task.memory: 2.4 MB
 task.time: 4m 20s
 
-[b1/3548bb] NOTE: Process `run_task (1)` terminated with an error exit status (1) -- Execution is retried (1)
+[00/8c6c6d] NOTE: Process `run_task (attempt 1)` terminated with an error exit status (1) -- Execution is retried (1)
 
 
 $ ./nextflow run main.nf --memory 3GB --time 1h13m --maxRetries 3
 N E X T F L O W  ~  version 19.10.0
-Launching `main.nf` [nasty_brattain] - revision: f045ab05e7
+Launching `main.nf` [determined_bernard] - revision: 0c2d572de9
+~~~~ Starting Workflow Configuration ~~~~~
+memory: 3GB
+time: 1h13m
+maxRetries: 3
+errorStrategy: retry
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 executor >  local (3)
-[3b/78beb7] process > run_task (3) [100%] 3 of 3, failed: 2 ✔
+[84/51ad00] process > run_task (attempt 3) [100%] 3 of 3, failed: 2 ✔
 task.attempt: 3
 task.memory: 9 GB
 task.time: 3h 39m
 
-[ce/378b10] NOTE: Process `run_task (1)` terminated with an error exit status (1) -- Execution is retried (1)
-[8d/33c9d2] NOTE: Process `run_task (2)` terminated with an error exit status (1) -- Execution is retried (2)
+[74/adaac9] NOTE: Process `run_task (attempt 1)` terminated with an error exit status (1) -- Execution is retried (1)
+[52/1f556a] NOTE: Process `run_task (attempt 2)` terminated with an error exit status (1) -- Execution is retried (2)
 ```
 
 # References
