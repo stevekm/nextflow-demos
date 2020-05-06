@@ -10,11 +10,11 @@ This demo uses the `python:3` Docker container to execute a custom script, `bin/
 
 The error can be fixed by simply updating the `divide.py` script to use a `try/except` to catch the error.
 
-In this way, we can easily debug custom scripts used in a Nextflow pipeline without having to rebuild the container image that holds their runtime requirements each time.
+In this way, we can easily debug custom scripts used in a Nextflow pipeline without having to rebuild the container image that holds their runtime requirements.
 
 # Usage
 
-- NOTE: Docker should be installed and the docker daemon running. The Docker container `python:3` will be used.
+- NOTE: Docker should be installed and running. The Docker container `python:3` will be used.
 
 Install Nextflow;
 
@@ -68,7 +68,7 @@ As we can see, the workflow crashed with a divide by zero error in the Python sc
 We are able to isolate and reproduce the error by entering the described `work` dir and checking the task execution files.
 
 ```
-$ cd /Users/kellys5/projects/nextflow-demos/bin-dir-container-debugging/work/48/5e8bc76fe86cf94e19c79c1ede9497
+$ cd /Users/steve/projects/nextflow-demos/bin-dir-container-debugging/work/48/5e8bc76fe86cf94e19c79c1ede9497
 
 $ ls -a
 .              ..             .command.begin .command.err   .command.log   .command.out   .command.run   .command.sh    .exitcode
@@ -80,7 +80,7 @@ Here we can see the files that Nextflow uses to execute the task. We can check t
 ```
 $ cat .command.log
 Traceback (most recent call last):
-  File "/Users/kellys5/projects/nextflow-demos/bin-dir-container-debugging/bin/divide.py", line 12, in <module>
+  File "/Users/steve/projects/nextflow-demos/bin-dir-container-debugging/bin/divide.py", line 12, in <module>
     result = numerator / denominator
 ZeroDivisionError: float division by zero
 ```
@@ -102,7 +102,7 @@ We can try to run the task again to isolate and reproduce the error, using the `
 ```
 $ bash .command.run
 Traceback (most recent call last):
-  File "/Users/kellys5/projects/nextflow-demos/bin-dir-container-debugging/bin/divide.py", line 12, in <module>
+  File "/Users/steve/projects/nextflow-demos/bin-dir-container-debugging/bin/divide.py", line 12, in <module>
     result = numerator / denominator
 ZeroDivisionError: float division by zero
 ```
@@ -127,7 +127,7 @@ except ZeroDivisionError:
 Back in our work directory (`work/48/5e8bc76fe86cf94e19c79c1ede9497`) we can try to execute the task again
 
 ```
-$ cd /Users/kellys5/projects/nextflow-demos/bin-dir-container-debugging/work/48/5e8bc76fe86cf94e19c79c1ede9497
+$ cd /Users/steve/projects/nextflow-demos/bin-dir-container-debugging/work/48/5e8bc76fe86cf94e19c79c1ede9497
 
 $ bash .command.run
 numerator: 1.0, denominator: 0.0, result: NA
