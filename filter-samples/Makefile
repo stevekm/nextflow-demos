@@ -16,6 +16,9 @@ run: install
 	-with-timeline timeline.html \
 	-with-trace trace.txt
 
+cmd:
+	@echo './nextflow run main.nf --archiveType "$(TYPE)" -with-report nextflow.html -with-timeline timeline.html -with-trace trace.tsv'
+
 bash:
 	bash
 

@@ -42,7 +42,9 @@ import java.nio.file.Files;
 sample_files.filter { sampleID, sampleFile ->
     long count = Files.lines(sampleFile).count()
     if (count <= 1) log.warn "File for ${sampleID} has too few lines and will be removed"
-    count > 1
+
+    // "true" or "false"
+    count > 1 // final statement in a closure is the return value
 }.set { sample_files_filtered }
 
 
@@ -97,6 +99,10 @@ process please_dont_break {
 }
 
 // group all the items by archive type
+// groups by first element in each set by default
+// [ [ archiveType, archive_file ], [ archiveType, archive_file ], ...   ]
+// becomes
+// [ [ archiveType, [ archive_file, archive_file, ... ]], ... ]
 successful_messages.groupTuple().set { grouped_messages }
 
 process gather_files {
