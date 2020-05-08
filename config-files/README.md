@@ -1,4 +1,4 @@
-# Dynamic Resource Allocation on Task Retry
+# Multiple Config Files and Process Directive Precedence
 
 This demonstration shows how to use multiple config files with Nextflow in order to override task configurations.
 
