@@ -10,6 +10,7 @@ install: ./nextflow
 
 cmd:
 	@echo './nextflow run main.nf'
+	@echo './nextflow run main.nf -resume'
 
 bash:
 	bash
