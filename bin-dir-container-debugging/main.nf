@@ -12,13 +12,16 @@ some_values = Channel.from(values_list)
 
 process divide {
     echo true
-    container "python:3"
+    container "python:3" // Docker container
 
     input:
     set val(numerator), val(denominator) from some_values
 
     script:
     """
+    # check that we are actually inside the container
+    cat /etc/*release
+
     divide.py "${numerator}" "${denominator}"
     """
 }

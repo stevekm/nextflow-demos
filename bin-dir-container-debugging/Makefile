@@ -8,6 +8,8 @@ export NXF_VER:=20.01.0
 
 install: ./nextflow
 
+cmd:
+	@echo './nextflow run main.nf'
 
 bash:
 	bash
