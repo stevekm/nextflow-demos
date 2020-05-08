@@ -1,8 +1,8 @@
 log.info "~~~~ Starting Workflow Configuration ~~~~~"
 log.info "memory: ${params.memory}"
 log.info "time: ${params.time}"
-log.info "maxRetries: ${params.maxRetries}"
 log.info "errorStrategy: ${params.errorStrategy}"
+log.info "maxRetries: ${params.maxRetries}"
 log.info "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
 process run_task {
