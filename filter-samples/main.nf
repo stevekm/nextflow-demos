@@ -31,6 +31,7 @@ process create_file {
     for i in \$(seq ${sampleVal}); do
         echo ${sampleID} >> "${output_file}"
     done
+    sleep 1
     """
 }
 
@@ -65,11 +66,13 @@ process create_archive {
         output_file = "${sampleID}.message.zip"
         """
         zip "${output_file}" "${message_txt}"
+        sleep 1
         """
     } else if ( "${params.archiveType}" == "tar" ) {
         output_file = "${sampleID}.message.tar.gz"
         """
         tar -czf "${output_file}" "${message_txt}"
+        sleep 1
         """
     } else {
         log.error "Unrecognized archiveType: ${params.archiveType}"
@@ -95,6 +98,7 @@ process please_dont_break {
         echo ">>> ERROR: ${sampleID} has failed!"
         exit 1
     fi
+    sleep 1
     """
 }
 
@@ -119,5 +123,6 @@ process gather_files {
     """
     echo "Last step in the workflow! Got these ${archiveType} files:"
     echo "${items}"
+    sleep 1
     """
 }
