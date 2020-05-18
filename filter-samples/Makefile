@@ -29,4 +29,5 @@ clean:
 	rm -rf work
 	rm -f *.html*
 	rm -f trace.txt*
+	rm -f trace.tsv*
 	rm -f dag.*
