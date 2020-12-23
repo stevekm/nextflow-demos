@@ -10,6 +10,8 @@ Demonstrations of various programming techniques for use inside [Nextflow](https
 
     - [timeline report](https://htmlpreview.github.io/?https://github.com/stevekm/nextflow-demos/blob/report-output/reporting/timeline-report.html)
 
+*NOTE*: Some of the techniques demonstrated here may be deprecated by the new [DSL2](https://www.nextflow.io/docs/latest/dsl2.html) syntax offered by Nextflow. Be sure to check that out as well.
+
 # Install
 
 Clone this repo:
@@ -93,6 +95,8 @@ make clean
 - Nextflow Homepage: https://www.nextflow.io/
 
 - Nextflow Docs: https://www.nextflow.io/docs/latest/getstarted.html
+
+- Nextflow Patterns: https://nextflow-io.github.io/patterns/index.html
 
 - Nextflow GitHub: https://github.com/nextflow-io/nextflow
 
