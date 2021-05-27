@@ -1,5 +1,9 @@
 nextflow.enable.dsl=2
 
+// allow to set the --max value from CLI
+params.max = "2"
+def max = "${params.max}" as int
+
 process run_task {
     echo true
 
@@ -17,5 +21,5 @@ process run_task {
 
 workflow {
     // start two parallel instances of the task
-    run_task(Channel.fromList(1..2))
+    run_task(Channel.fromList(1..max))
 }
