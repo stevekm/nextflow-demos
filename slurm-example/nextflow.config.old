@@ -1,0 +1,16 @@
+// this old config file has settings for NYU HPC system which uses Singularity for containers inside SLURM jobs
+
+singularity.enabled = true
+singularity.autoMounts = true
+params.containerDir = "/gpfs/data/molecpathlab/containers/NGS580-nf"
+executor.queueSize = 5
+
+process {
+    module = "singularity/2.5.2"
+    executor = 'slurm'
+    time = '4h'
+    cpus = 2
+    memory = { 8.GB * task.cpus }
+    clusterOptions = '--ntasks-per-node=1 --export=NONE --export=NTHREADS --mem-bind=local'
+    container = "${params.containerDir}/variant-calling-0.0.2.simg"
+}

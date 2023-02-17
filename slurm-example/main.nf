@@ -16,6 +16,7 @@ process make_foo {
     """
     echo "this is the script for  ${x}"
     echo "${x}" > "${output_file}"
+    echo "check the .command.log file for more SLURM execution details (\$(pwd))"
     """
 
 }
