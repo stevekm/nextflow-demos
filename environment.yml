@@ -1,0 +1,10 @@
+# $ conda env create -f environment.yml -n nextflow
+# $ conda activate nextflow
+name: nextflow
+channels:
+  - bioconda
+  - anaconda
+  - defaults
+dependencies:
+  - nextflow # 22.10.6=h4a94de4_0
+  - graphviz
