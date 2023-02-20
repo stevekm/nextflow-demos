@@ -14,9 +14,9 @@ process make_foo {
     script:
     output_file = "${x}.txt"
     """
-    echo "this is the script for  ${x}"
+    echo "this is the script for ${x}"
     echo "${x}" > "${output_file}"
-    echo "check the .command.log file for more SLURM execution details (\$(pwd))"
+    echo "check the .command.log file for more SLURM execution details (\$(pwd)/.command.log)"
     """
 
 }
