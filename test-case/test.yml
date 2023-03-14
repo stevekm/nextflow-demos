@@ -1,4 +1,6 @@
 # https://pytest-workflow.readthedocs.io/en/stable/#test-options
+# https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow
+# $ pytest --wt 2
 - name: Run workflow
   command: nextflow run main.nf
   files:
