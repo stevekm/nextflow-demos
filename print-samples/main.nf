@@ -33,7 +33,7 @@ process with_tags {
 
 // print the output of each process to the terminal
 process with_echo {
-    tag { "${sampleID}" }
+    tag "${sampleID}"
     echo true
 
     input:

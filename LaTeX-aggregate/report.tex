@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage{pgffor}
+\usepackage{graphicx}
+\begin{document}
+- Report -
+
+\def\Files{fig1.pdf, fig2.pdf, fig3.pdf}
+\foreach \File in \Files {
+    \IfFileExists{\File}{
+
+    \begin{figure}[h]
+    \centering
+    \includegraphics{\File}
+    \end{figure}
+
+    }
+}
+\end{document}

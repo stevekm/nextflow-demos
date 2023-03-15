@@ -1,0 +1,29 @@
+---
+title: "People"
+date: '`r format(Sys.time(), "%B %d, %Y")`'
+params:
+    db: "db.sqlite"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library("RSQLite")
+db <- params$db
+save.image("loaded.Rdata")
+```
+
+```{r, results='asis'}
+con <- dbConnect(SQLite(), db)
+df <- dbGetQuery(con, "select * from TBL1")
+
+for(i in seq(nrow(df))){
+    writeBin(unlist(df[i, "PIC"]), 
+         con = df[i, "FILENAME"])
+    cat(sprintf('\n# %s\n\n', df[i, "NAME"]))
+    cat(sprintf("![](%s)\n\n", df[i, "FILENAME"]))
+}
+save.image("final.Rdata")
+```

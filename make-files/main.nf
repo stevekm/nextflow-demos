@@ -1,8 +1,8 @@
 Channel.from( ['Sample1','Sample2','Sample3','Sample4'] )
-        .into { samples }
+        .set { samples }
 
 process make_file {
-    tag { "${sampleID}" }
+    tag "${sampleID}"
 
     input:
     val(sampleID) from samples
@@ -17,7 +17,7 @@ process make_file {
 }
 
 process print_file {
-    tag { "${sample_file}" }
+    tag "${sample_file}"
     echo true
 
     input:

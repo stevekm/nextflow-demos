@@ -3,7 +3,7 @@ Channel.from(["Sample1.fastq.gz", "Sample2.fastq.gz"]).set { samples_fastqs }
 params.output_dir = "output"
 
 process make_files {
-    tag { "${fastq}" }
+    tag "${fastq}"
     publishDir "${params.output_dir}/make_files", mode: 'copy', overwrite: true
 
     input:
@@ -23,7 +23,7 @@ process make_files {
 }
 
 process get_files {
-    tag { "${fastq}" }
+    tag "${fastq}"
     echo true
 
     input:

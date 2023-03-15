@@ -1,14 +1,16 @@
 # nextflow-demos
 
-Demonstrations of various programming techniques for use inside Nextflow pipelines.
+Demonstrations of various programming techniques for use inside [Nextflow](https://www.nextflow.io/) pipelines. This repository is meant to be a supplement to the [official Nextflow documentation](https://www.nextflow.io/docs/latest/getstarted.html) (links below).
 
-- an overview presentation about Nextflow can be found [here](https://github.com/stevekm/nextflow-demos/blob/docs/docs/Nextflow_presentation.pdf)
+- an overview presentation about Nextflow can be found [here](https://github.com/stevekm/nextflow-demos/blob/docs/docs/Nextflow_presentation.pdf) (view [here](https://docs.google.com/viewer?url=https://raw.githubusercontent.com/stevekm/nextflow-demos/docs/docs/Nextflow_presentation.pdf))
 
 - Nextflow HTML report examples can be found here:
 
     - [pipeline report](https://htmlpreview.github.io/?https://github.com/stevekm/nextflow-demos/blob/report-output/reporting/nextflow-report.html)
-    
+
     - [timeline report](https://htmlpreview.github.io/?https://github.com/stevekm/nextflow-demos/blob/report-output/reporting/timeline-report.html)
+
+*NOTE*: Some of the techniques demonstrated here may be deprecated by the new [DSL2](https://www.nextflow.io/docs/latest/dsl2.html) syntax offered by Nextflow. Be sure to check that out as well.
 
 # Install
 
@@ -55,11 +57,13 @@ Each subdirectory contains files to run sample Nextflow pipelines.
 
 - `reporting`: execution of Nextflow pipeline with reporting and config features enabled.
 
-- `profiles`: usage of 'profiles' to change process execution behavior 
+- `profiles-Docker-module`: usage of 'profiles' to change process execution behavior to use Docker or environment modules
+
+- `Groovy-code`: example of using inline Groovy code inside the Nextflow pipeline
 
 # Usage
 
-You can use the following commands inside the provided demo subdirs to run the demo pipelines. 
+You can use the following commands inside the provided demo subdirs to run the demo pipelines.
 
 ## Install Nextflow
 
@@ -91,6 +95,8 @@ make clean
 - Nextflow Homepage: https://www.nextflow.io/
 
 - Nextflow Docs: https://www.nextflow.io/docs/latest/getstarted.html
+
+- Nextflow Patterns: https://nextflow-io.github.io/patterns/index.html
 
 - Nextflow GitHub: https://github.com/nextflow-io/nextflow
 

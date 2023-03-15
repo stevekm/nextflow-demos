@@ -1,0 +1,9 @@
+Bootstrap: docker
+From: alpine:3.8
+
+%post
+    apk add --no-cache bash
+
+%test
+    bash --version
+

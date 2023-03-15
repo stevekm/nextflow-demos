@@ -1,0 +1,1 @@
+An example of using the scatter-gather methodology to run compute-intensive tasks on smaller chunks of data in parallel, then aggregate the results
