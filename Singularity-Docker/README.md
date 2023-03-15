@@ -50,4 +50,5 @@ $ nextflow run -profile singularity main.nf
 
 # Resources
 
-- ....
+- https://uwekorn.com/2021/03/01/deploying-conda-environments-in-docker-how-to-do-it-right.html
+- https://pythonspeed.com/articles/activate-conda-dockerfile/
