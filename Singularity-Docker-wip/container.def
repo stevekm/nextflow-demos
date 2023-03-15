@@ -1,8 +1,8 @@
 # Singularity / Apptainer definition file
 # https://docs.sylabs.io/guides/latest/user-guide/definition_files.html
 Bootstrap: docker
-From: continuumio/miniconda3:4.7.12
+From: continuumio/miniconda3:4.12.0
 
-# %test
-#     which conda
+%post
+    conda install -c conda-forge r-ggplot2
 
