@@ -20,3 +20,4 @@ nextflow.html
 dag.dot
 dag.png
 report.html
+*.sif
