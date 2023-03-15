@@ -1,0 +1,8 @@
+# Singularity / Apptainer definition file
+# https://docs.sylabs.io/guides/latest/user-guide/definition_files.html
+Bootstrap: docker
+From: continuumio/miniconda3:4.7.12
+
+# %test
+#     which conda
+
