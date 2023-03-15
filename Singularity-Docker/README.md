@@ -38,7 +38,7 @@ $ docker run --privileged --workdir $PWD --volume $PWD:$PWD --rm -ti quay.io/sin
 $ docker run --privileged --workdir $PWD --volume $PWD:$PWD --rm -ti quay.io/singularity/singularity:v3.11.0 exec container.sif bash -c 'which R; Rscript -e "library(ggplot2); print(.libPaths())"; echo $?'
 ```
 
-## Run the workflow
+# Run the workflow
 
 ```
 $ nextflow run main.nf
@@ -46,6 +46,8 @@ $ nextflow run main.nf
 $ nextflow run -profile docker main.nf
 
 $ nextflow run -profile singularity main.nf
+
+$ nextflow run -profile conda main.nf
 ```
 
 # Resources
