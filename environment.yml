@@ -2,12 +2,13 @@
 # $ conda activate nextflow
 name: nextflow
 channels:
+  - conda-forge
   - bioconda
   - anaconda
   - defaults
-  - conda-forge
 dependencies:
-  - nextflow # 22.10.6=h4a94de4_0
+  - nextflow
   - graphviz
+  - pytest-workflow # make sure to get the version from conda-forge !!
   # - nf-core # this causes the conda install to take a looooooong time ??
   # - prettier
