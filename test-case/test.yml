@@ -1,8 +1,15 @@
 # https://pytest-workflow.readthedocs.io/en/stable/#test-options
 # https://pytest-workflow.readthedocs.io/en/stable/#running-pytest-workflow
+# to run tests in parallel;
 # $ pytest --wt 2
 - name: Run workflow
-  command: nextflow run main.nf
+  command: nextflow run main.nf -profile test
+  files:
+  - path: output/output.txt
+    md5sum: 8e7a5ee18ddaecfab74fd32545ae9e02
+    contains: ["foo\tbar", "baz\tbuzz"]
+- name: Run workflow with docker
+  command: nextflow run main.nf -profile test,docker
   files:
   - path: output/output.txt
     md5sum: 8e7a5ee18ddaecfab74fd32545ae9e02
