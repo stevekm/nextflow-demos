@@ -25,3 +25,6 @@ dependencies:
 # easier command to create the env that might not work because it sits spinning trying to resolve the packages forever when nf-core is included
 # $ conda env create -f environment.yml -n nextflow
 # $ conda activate nextflow
+
+
+# TODO: add nf-test https://code.askimed.com/nf-test/installation/
