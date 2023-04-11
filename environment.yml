@@ -1,5 +1,12 @@
-# $ conda env create -f environment.yml -n nextflow
-# $ conda activate nextflow
+# Need to run these exact commands to get the env created correctly;  https://bioconda.github.io/#usage
+# conda create -y -n nextflow
+# conda activate nextflow
+# conda config --env --add channels defaults
+# conda config --env --add channels bioconda
+# conda config --env --add channels conda-forge
+# conda config --env --set channel_priority strict
+# conda env update --name nextflow --file environment.yml
+
 name: nextflow
 channels:
   - conda-forge
@@ -10,5 +17,11 @@ dependencies:
   - nextflow
   - graphviz
   - pytest-workflow>=1.6 # make sure to get the version from conda-forge !!
-  # - nf-core # this causes the conda install to take a looooooong time ??
+  - nf-core # this causes the conda install to take a looooooong time unless the strict channel priority is used
   # - prettier
+
+
+
+# easier command to create the env that might not work because it sits spinning trying to resolve the packages forever when nf-core is included
+# $ conda env create -f environment.yml -n nextflow
+# $ conda activate nextflow
