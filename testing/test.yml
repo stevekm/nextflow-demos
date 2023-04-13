@@ -1,0 +1,5 @@
+- name: Run workflow
+  command: nextflow run main.nf
+  files:
+  - path: output/output.vcf
+    must_not_contain: ["1\t10257"]

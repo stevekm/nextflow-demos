@@ -1,0 +1,31 @@
+nextflow_pipeline {
+
+    name "Test Pipeline"
+    script "main.nf"
+
+    test("Should run without failures") {
+
+        when {
+            params {
+              inputVcf = "data/multisample.vcf"
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert workflow.trace.tasks().size() == 1
+            assert new File("output/output.vcf").exists()
+
+            def num_variants = 0
+            new File("output/output.vcf").withReader { reader ->
+                def line
+                while (line = reader.readLine()) {
+                    if (! line.startsWith("#")) num_variants++
+                }
+            }
+            assert num_variants == 20
+
+        }
+    }
+
+}

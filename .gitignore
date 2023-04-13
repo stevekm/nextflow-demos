@@ -21,3 +21,6 @@ dag.dot
 dag.png
 report.html
 *.sif
+.nextflow
+.nf-test
+nf-test
