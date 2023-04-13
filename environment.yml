@@ -16,7 +16,7 @@
 # $ conda activate nextflow
 
 # TODO: add nf-test https://code.askimed.com/nf-test/installation/
-
+# $ wget -qO- https://code.askimed.com/install/nf-test | bash
 
 name: nextflow
 channels:
