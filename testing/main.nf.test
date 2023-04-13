@@ -16,6 +16,7 @@ nextflow_pipeline {
             assert workflow.trace.tasks().size() == 1
             assert new File("output/output.vcf").exists()
 
+            // check number of mutations
             def num_variants = 0
             new File("output/output.vcf").withReader { reader ->
                 def line
@@ -24,8 +25,6 @@ nextflow_pipeline {
                 }
             }
             assert num_variants == 20
-
         }
     }
-
 }
