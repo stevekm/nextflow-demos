@@ -25,8 +25,8 @@ channels:
   - anaconda
   - defaults
 dependencies:
-  - nextflow
+  - nextflow>=22
   - graphviz
   - pytest-workflow>=1.6 # make sure to get the version from conda-forge !!
-  - nf-core # this causes the conda install to take a looooooong time unless the strict channel priority is used
+  - nf-core>=2.7 # this causes the conda install to take a looooooong time unless the strict channel priority is used
   # - prettier
