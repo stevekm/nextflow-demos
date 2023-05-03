@@ -52,5 +52,6 @@ $ nextflow run -profile conda main.nf
 
 # Resources
 
+- https://docs.sylabs.io/guides/latest/user-guide/definition_files.html
 - https://uwekorn.com/2021/03/01/deploying-conda-environments-in-docker-how-to-do-it-right.html
 - https://pythonspeed.com/articles/activate-conda-dockerfile/
