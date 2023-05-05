@@ -1,6 +1,7 @@
 # a conda env with R installed for easier testing and debug of Nextflow pipeline processes that use R
 # $ conda env create -f r-base.4.1.yml -n "R.4.1"
 # $ conda env update --name R.4.1 --file r-base.4.1.yml
+# $ R --vanilla
 channels:
   - conda-forge
 dependencies:
