@@ -1,0 +1,3 @@
+SampleID,SampleType,Library,FastqR1,FastqR2
+Sample1,melanoma,Test_Lib_1,files/Sample1_R1.fastq.gz,files/Sample1_R2.fastq.gz
+Sample2,melanoma,Test_Lib_1,files/Sample2_R1.fastq.gz,files/Sample2_R2.fastq.gz
