@@ -41,6 +41,9 @@ workflow {
         meta.remove("SampleType")
         meta.remove("Library")
 
+        // we can add extra items from the global params map object, if you wanted to do that for some reason
+        meta = meta + params.subMap("foo_val", "bar_val")
+
         return([meta, fastqR1, fastqR2])
     }
     .view()
