@@ -111,8 +111,6 @@ Each subdirectory contains files to run sample Nextflow pipelines.
 
 - Pipeline examples: https://github.com/nextflow-io/awesome-nextflow
 
-- Boilerplate example for writing pipelines: https://github.com/stevekm/nextflow-boilerplate
-
 - NYU pipelines:
 
     - exome sequencing: https://github.com/NYU-Molecular-Pathology/NGS580-nf
