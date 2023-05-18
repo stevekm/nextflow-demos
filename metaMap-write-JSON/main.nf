@@ -9,7 +9,6 @@ params.outputDir = "output"
 process WRITE_JSON {
     publishDir "${params.outputDir}", mode: 'copy'
 
-    // NOTE: do not try to read from input files in the 'exec' context
     input:
     val(meta)
 
