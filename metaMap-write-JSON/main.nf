@@ -27,9 +27,28 @@ process WRITE_JSON {
     outputfile.write(json_indented)
 }
 
+process READ_JSON {
+    // NOTE: must use val here to get input file path; see these;
+    // https://github.com/nextflow-io/nextflow/issues/378
+    // https://github.com/nextflow-io/nextflow/issues/942
+    input:
+    val(inputJsonPath)
+
+    output:
+    val(metaMap), emit: metaMap
+
+    exec:
+    println ">>> READ_JSON inputJsonPath: ${inputJsonPath}"
+    contents = file(inputJsonPath).text
+    // NOTE: why doesnt this work??? ;  // File file_obj = new File("${inputJsonPath}")
+    println ">>> READ_JSON contents: ${contents}"
+    metaMap = new JsonSlurper().parseText(contents)
+    println ">>> READ_JSON metaMap: ${metaMap}"
+}
+
 workflow {
     // load csv
-        Channel.fromPath(params.samplesheet)
+    Channel.fromPath(params.samplesheet)
         .splitCsv(header: true)
         .map { row ->
             def sampleFile = file(row.sampleFile)
@@ -45,17 +64,14 @@ workflow {
             samples: [meta, sampleFile]
         }.set { input_ch }
 
-        // look at channel contents
-        // input_ch.meta.view()
-        // input_ch.samples.view()
-
         // create a JSON file
         WRITE_JSON(input_ch.meta)
 
-        // read the JSON file; note that you cannot do this from within a process exec scope
-        WRITE_JSON.out.metaJson.map { jsonFile ->
-            def data = new JsonSlurper().parseText(jsonFile.text)
-            println "read data back in from JSON file: ${data}"
-        }
+        // read the file contents
+        READ_JSON(WRITE_JSON.out.metaJson)
 
+        // pass the file contents through a channel
+        READ_JSON.out.metaMap.map{ meta ->
+            println "output channel meta: ${meta}"
+        }
 }
