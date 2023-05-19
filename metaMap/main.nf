@@ -46,7 +46,7 @@ workflow {
 
         return([meta, fastqR1, fastqR2])
     }
-    .view()
+    // .view()
 
     PRINT_META(samples_ch)
 
