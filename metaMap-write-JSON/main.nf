@@ -5,6 +5,11 @@ nextflow.enable.dsl=2
 params.samplesheet = "samplesheet.csv"
 params.outputDir = "output"
 
+// cli override to turn off JSON saving since it currently appears to conflict with -resume
+// $ nextflow run main.nf --saveJSON false ;
+// case-insensitive True / False gets converted automatically to bool type
+params.saveJSON = true
+
 // https://code-maven.com/groovy-json
 process WRITE_JSON {
     publishDir "${params.outputDir}", mode: 'copy'
@@ -14,6 +19,9 @@ process WRITE_JSON {
 
     output:
     path(outputfile), emit: metaJson
+
+    when:
+    params.saveJSON
 
     // NOTE: do not use 'def' here
     exec:
@@ -35,6 +43,9 @@ process READ_JSON {
 
     output:
     val(metaMap), emit: metaMap
+
+    when:
+    params.saveJSON
 
     exec:
     println ">>> READ_JSON inputJsonPath: ${inputJsonPath}"
