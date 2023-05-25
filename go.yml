@@ -1,0 +1,11 @@
+# conda env recipe for installing Go (Golang) SDK
+# to help with making custom tools and scripts to use with workflows
+# https://go.dev/
+# https://go.dev/dl/
+# https://anaconda.org/conda-forge/go
+#
+# $ conda env create -f go.yml -n "go.1.20"
+channels:
+  - conda-forge
+dependencies:
+  - go=1.20
