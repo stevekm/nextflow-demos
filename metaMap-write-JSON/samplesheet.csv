@@ -1,2 +1,3 @@
 sampleID,sampleType,sampleVal,sampleTag,sampleFile
 Sample1,fooType,42,baz,file.txt
+Sample2,barType,43,buzz,file.txt

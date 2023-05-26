@@ -25,12 +25,12 @@ process WRITE_JSON {
 
     // NOTE: do not use 'def' here
     exec:
-    println ">>> WRITE_JSON meta: ${meta}"
+    // println ">>> WRITE_JSON meta: ${meta}"
     json_str = JsonOutput.toJson(meta)
-    println ">>> WRITE_JSON json_str: ${json_str}"
+    // println ">>> WRITE_JSON json_str: ${json_str}"
     json_indented = JsonOutput.prettyPrint(json_str)
-    println ">>> WRITE_JSON json_indented: ${json_indented}"
-    outputfile = new File("${task.workDir}/meta.json")
+    // println ">>> WRITE_JSON json_indented: ${json_indented}"
+    outputfile = new File("${task.workDir}/${meta.sampleID}.exec.json")
     outputfile.write(json_indented)
 }
 
@@ -48,12 +48,32 @@ process READ_JSON {
     params.saveJSON
 
     exec:
-    println ">>> READ_JSON inputJsonPath: ${inputJsonPath}"
+    // println ">>> READ_JSON inputJsonPath: ${inputJsonPath}"
     contents = file(inputJsonPath).text
     // NOTE: why doesnt this work??? ;  // File file_obj = new File("${inputJsonPath}")
-    println ">>> READ_JSON contents: ${contents}"
+    // println ">>> READ_JSON contents: ${contents}"
     metaMap = new JsonSlurper().parseText(contents)
     println ">>> READ_JSON metaMap: ${metaMap}"
+}
+
+process WRITE_JSON_SCRIPT {
+    // write using script; the default shell is bash
+    publishDir "${params.outputDir}", mode: 'copy'
+
+    input:
+    val(meta)
+
+    output:
+    path(outputFile), emit: jsonFile
+
+    script:
+    outputFile = "${meta.sampleID}.script.json"
+    json_str = JsonOutput.toJson(meta)
+    json_indented = JsonOutput.prettyPrint(json_str)
+    // NOTE: using single quotes is required here!
+    """
+    echo '${json_indented}' > "${outputFile}"
+    """
 }
 
 workflow {
@@ -64,21 +84,24 @@ workflow {
             def sampleFile = file(row.sampleFile)
 
             // construct meta map from subset of samplesheet fields
-            meta = row.subMap('sampleID', 'sampleType')
+            meta = row.subMap('sampleID', 'sampleType', 'sampleVal', 'sampleTag')
 
             [meta, sampleFile]
         }
         // send the output to two separate channels
         .multiMap { meta, sampleFile ->
             meta: meta
-            samples: [meta, sampleFile]
+            samples: [meta, sampleFile] // for demonstration purposes; not actually using this one
         }.set { input_ch }
 
-        // create a JSON file
+        // create a JSON file with Nextflow exec
         WRITE_JSON(input_ch.meta)
 
+        // also use the Nextflow script scope to write the file
+        WRITE_JSON_SCRIPT(input_ch.meta)
+
         // read the file contents
-        READ_JSON(WRITE_JSON.out.metaJson)
+        READ_JSON(WRITE_JSON.out.metaJson.concat(WRITE_JSON_SCRIPT.out.jsonFile))
 
         // pass the file contents through a channel
         READ_JSON.out.metaMap.map{ meta ->
