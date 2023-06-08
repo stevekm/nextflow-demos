@@ -1,0 +1,6 @@
+{
+    "samples": [
+        { "id": "Sample1", "type": "melanoma", "species": "human" },
+        { "id": "Sample4", "type": "adenoma", "species": "mouse" }
+    ]
+}
