@@ -1,8 +1,8 @@
 # nextflow-demos
 
-*NOTE*: Some of the techniques demonstrated here may be deprecated by the new [DSL2](https://www.nextflow.io/docs/latest/dsl2.html) syntax offered by Nextflow. Be sure to check that out as well. Many of these examples were written prior to the development of new Nextflow programming syntaxes and techniques and prior to the deprication of some old ones. At this point there are too many examples for me to go back and update everything so I will likely leave things as-is until I need to revisit an old method for myself.
-
 *NOTE*: This is not an official Nextflow documentation repo, this is just my personal collection of code snippets to use in Nextflow workflows. Be sure to see the links to the official Nextflow resources listed at the bottom of this page and listed here.
+
+*NOTE*: Some of the techniques demonstrated here may be deprecated by the new [DSL2](https://www.nextflow.io/docs/latest/dsl2.html) syntax offered by Nextflow. Be sure to check that out as well. Many of these examples were written prior to the development of new Nextflow programming syntaxes and techniques and prior to the deprication of some old ones. At this point there are too many examples for me to go back and update everything so I will likely leave things as-is until I need to revisit an old method for myself.
 
 This repository contains demonstrations of various programming techniques for use inside [Nextflow](https://www.nextflow.io/) pipelines. This repository is meant to be a supplement to the [official Nextflow documentation](https://www.nextflow.io/docs/latest/getstarted.html) (links below).
 
