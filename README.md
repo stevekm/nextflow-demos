@@ -82,6 +82,7 @@ Each subdirectory contains files to run sample Nextflow pipelines.
 - `nf-clean.sh`: helper script to clean up Nextflow outputs (if for some reason you dont want to use [`nextflow clean`](https://www.nextflow.io/docs/latest/cli.html#clean) )
 - `environment.yml`: helper conda env recipe to install Nextflow, read the included notes carefully to make sure the `bioconda` packages install correctly
 - `r-base.4.1.yml`: conda env recipe for a basic R installation, since so many Nf pipelines end up including R scripts that need debugging too, its just easier to bundle it here as well
+- `go.yml`: conda env recipe for a basic Go (Golang) SDK installation, so that we can start using a programming language with less baggage for our custom workflow scripts and misc. programming tasks
 
 # Resources
 
