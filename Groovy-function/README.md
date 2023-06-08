@@ -33,3 +33,4 @@ ECHO process: [id:Sample1, type:melanoma, species:human, foo:bar, baz:buzz, HELL
 ## Resources
 
 - https://www.nextflow.io/docs/latest/dsl2.html#function
+- "Workflow safety and immutable objects" https://www.youtube.com/watch?v=A357C-ux6Dw
