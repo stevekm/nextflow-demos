@@ -20,3 +20,8 @@ executor >  local (2)
 
 >>> PRINT_META sample: Sample1, type: melanoma
 ```
+
+
+## Resources
+
+- "Workflow safety and immutable objects" https://www.youtube.com/watch?v=A357C-ux6Dw
