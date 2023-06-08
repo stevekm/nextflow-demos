@@ -49,3 +49,8 @@ Some important notes;
 - as of this writing, `exec` writing to `task.workDir` does not appear to work when running with `-work-dir` inside an AWS S3 bucket, as is the case when using the AWS Batch executor
 - as of this writing, `exec` can only run in the `local` executor
 - due to the current limitations of the `exec` scope in Nextflow, you may consider using the `script` scope instead
+
+
+## Resources
+
+- "Workflow safety and immutable objects" https://www.youtube.com/watch?v=A357C-ux6Dw
