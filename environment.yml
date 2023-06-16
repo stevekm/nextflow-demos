@@ -9,6 +9,9 @@
 
 # NOTE: if you have trouble getting it to install, then try removing the nf-core modules
 
+# NOTE: might need to update base conda;
+# $ conda update -n base -c defaults conda
+
 # NOTE: alternative way to try installing the env;
 
 # easier command to create the env that might not work because it sits spinning trying to resolve the packages forever when nf-core is included
@@ -25,8 +28,9 @@ channels:
   - anaconda
   - defaults
 dependencies:
+  - python>=3.11
   - nextflow>=22
-  - graphviz
+  # - graphviz
   - pytest-workflow>=1.6 # make sure to get the version from conda-forge !!
   - nf-core>=2.7 # this causes the conda install to take a looooooong time unless the strict channel priority is used
   # - prettier
