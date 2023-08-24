@@ -1,5 +1,5 @@
 process MULTIQC {
-    publishDir "output", mode: "copy"
+    publishDir "${params.output_dir}/multiqc", mode: "copy"
 
     conda "bioconda::multiqc=1.14"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?

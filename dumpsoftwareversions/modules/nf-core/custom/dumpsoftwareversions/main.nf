@@ -1,5 +1,5 @@
 process CUSTOM_DUMPSOFTWAREVERSIONS {
-    label 'process_single'
+    publishDir "${params.output_dir}/dumpsoftwareversions", mode: "copy"
 
     // Requires `pyyaml` which does not have a dedicated container but is in the MultiQC container
     conda "bioconda::multiqc=1.14"
