@@ -9,5 +9,6 @@ process BAR {
     println "--------- BAR start -----------"
     println ">>> BAR: ${id}"
     println Utils.customMessage("${task.process}") // custom method here works with `task` object
+    println task.resourceLabels.getClass()
     println "--------- BAR end -----------"
 }
