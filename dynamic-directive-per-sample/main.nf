@@ -25,8 +25,14 @@ workflow {
         def inputMem = row.memMB
         def fastq = file(row.file)
         def numReads = fastq.countFastq()
-        def metaMap = row.subMap("id") + ["reads": numReads, "memOverride": false, "memOverrideVal": 0]
+        def metaMap = row.subMap("id") + [
+            "reads": numReads,
+            "memOverride": false, // use separate boolean flag and val keys so we do not need to worry about parsing data types later
+            "memOverrideVal": 0  // this value must remain an int ; TODO: next time maybe use a custom class with an int field instead to enforce typing more safely
+            ]
 
+        // if the samplesheet value is an int, use that instead
+        // TODO: somehow also support floats, maybe, idk
         if (inputMem.isInteger()) {
             metaMap["memOverride"] = true
             metaMap["memOverrideVal"] = inputMem as Integer

@@ -1,5 +1,18 @@
 # Dynamic Directive Per Sample
 
+This demo shows how you can set Nextflow process directives, such as the task `memory` value, dynamically based on per-sample attributes (such as the number of reads in a sample's fastq file). It also shows how you can input these values optionally as part of the pipeline's input, in this case by adding an extra column for an optional `memMB` value in the input samplesheet.
+
+By having task directives such as `memory` dynamically evaluated based on per-sample attributes, you can attempt to scale your task resource allocations more closely to the expected needs of each individual sample. In this case we will use the built-in `.countFastq()` method, but you could easily replace this with your own custom code evaluating other sample data attributes.
+
+By allowing for user-input values for these directives at a per-sample basis, you can also preserve the `-resume` functionality of Nextflow in order to restart a failed run while manually updating e.g. `memory` values only for affected samples, without disturbing the "resume" function for other samples that may have completed successfully.
+
+Resources;
+
+- https://www.nextflow.io/docs/latest/process.html#dynamic-directives
+- https://www.nextflow.io/docs/latest/process.html#dynamic-computing-resources
+- https://www.nextflow.io/blog/2019/demystifying-nextflow-resume.html
+- https://www.nextflow.io/docs/latest/script.html?highlight=fastq#countfastq
+
 ## Usage
 
 Run the first time, and all samples are run with either default dynamic memory values based on the number of fastq reads, or using an override value input from the `Samplesheet.csv`
