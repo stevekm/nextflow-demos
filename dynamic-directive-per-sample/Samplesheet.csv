@@ -1,0 +1,5 @@
+id,file,memMB
+Sample1,data/Sample1.fastq,42
+Sample2,data/Sample2.fastq,42
+Sample3,data/Sample3.fastq,NA
+Sample4,data/Sample4.fastq,NA
