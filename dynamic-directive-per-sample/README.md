@@ -11,6 +11,7 @@ Resources;
 - https://www.nextflow.io/docs/latest/process.html#dynamic-directives
 - https://www.nextflow.io/docs/latest/process.html#dynamic-computing-resources
 - https://www.nextflow.io/blog/2019/demystifying-nextflow-resume.html
+  - https://www.nextflow.io/blog/2019/troubleshooting-nextflow-resume.html
 - https://www.nextflow.io/docs/latest/script.html?highlight=fastq#countfastq
 
 ## Usage
