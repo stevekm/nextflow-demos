@@ -138,6 +138,8 @@ nextflow run main.nf --samplesheet samples.csv --arg1 foo --arg2 bar --arg3 bazz
 
 - if your pipeline is being launched by an external orchestrator, it simplifies the data serialization needed to create your pipeline input file
 
+Note that if you check out the contents of the `main.nf` script used here, you will see that by utilizing objects created using JSON + `-params-file`, I am able to create the two primary input `Channel`'s using about six lines of code. However, to fill in those same channels with data from the .csv and .txt inputs, I needed closer to 15 lines of code in order to handle the extra input parsing.
+
 However you may still utilize .csv format in cases such as
 
 - other users need to be able to view and modify samplesheet data in Excel
