@@ -1,0 +1,11 @@
+{
+    "samples": [
+        { "id": "Sample1", "file": "data/Sample1.txt", "type": "melanoma", "species": "human", "arg1": 10, "doBar": true },
+        { "id": "Sample4", "file": "data/Sample4.txt", "type": "adenoma", "species": "mouse", "arg1": 25, "doBar": false }
+    ],
+    "barArgs": [
+        "bar1",
+        "bar2",
+        "bar3"
+    ]
+}

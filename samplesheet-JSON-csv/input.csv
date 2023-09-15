@@ -1,0 +1,3 @@
+id,type,species,arg1,doBar,file
+Sample1,melanoma,human,10,true,data/Sample1.txt
+Sample4,adenoma,mouse,25,false,data/Sample4.txt
