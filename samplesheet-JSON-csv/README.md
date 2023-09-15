@@ -113,3 +113,35 @@ executor >  local (5)
 
 >>> FOO: arg:10, Sample: Sample1, file: Sample1.txt
 ```
+
+# Conclusions
+
+If possible, it is preferable to utilize JSON input with `-params-file` for Nextflow sample input, for several reasons;
+
+- it allows you to set all `params` values in the pipeline at once, instead of needing to specify numerous cli args to your pipeline. Compare
+
+```
+nextflow run main.nf -params-file input.json
+```
+
+to
+
+```
+nextflow run main.nf --samplesheet samples.csv --arg1 foo --arg2 bar --arg3 bazz ...
+```
+
+- it allows you to skip text-parsing of your input samplesheet contents
+
+- it allows you to input more complex data structures as input to your pipeline, such as nested sub-mappings per sample
+
+- it allows you to input data from multiple sources at once, instead of requiring multiple individual samplesheet inputs
+
+- if your pipeline is being launched by an external orchestrator, it simplifies the data serialization needed to create your pipeline input file
+
+However you may still utilize .csv format in cases such as
+
+- other users need to be able to view and modify samplesheet data in Excel
+
+- you already have other infrastructure built around .csv files and dont yet want to switch to a different format
+
+Whichever format you choose, you will find sufficient tools in the Nextflow, Groovy, and Java ecosystems to handle your input sample parsing tasks.
