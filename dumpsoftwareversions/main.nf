@@ -8,6 +8,7 @@ include { MULTIQC                                        } from './modules/nf-co
 
 process MAKE_VERSIONS1 {
     publishDir "${params.output_dir}/make_version_1", mode: "copy"
+    container "ubuntu:22.04"
 
     input:
     val(id)
@@ -29,6 +30,7 @@ process MAKE_VERSIONS1 {
 
 process MAKE_VERSIONS2 {
     publishDir "${params.output_dir}/make_version_2", mode: "copy"
+    container "ubuntu:22.04"
 
     input:
     val(id)
@@ -64,9 +66,11 @@ workflow {
     )
 
     version_yaml = CUSTOM_DUMPSOFTWAREVERSIONS.out.mqc_yml.collect()
+    // version_yaml.view()
 
     multiqc_files = Channel.empty()
     multiqc_files = multiqc_files.mix(version_yaml)
+    multiqc_files.view()
 
     MULTIQC(multiqc_files.collect(), [], [], [])
 
