@@ -7,11 +7,13 @@ process MAKE_VERSIONS1 {
 
     output:
     path(output_filename), emit: versions
+    path("foo.txt")
 
     script:
     // NOTE: the versions filename is usually versions.yml but we are renaming it here for clarity
     output_filename = "versions.${id}.yml"
     """
+    foo.sh > foo.txt
     cat <<-END_VERSIONS > "${output_filename}"
     "${task.process}":
         MAKE_VERSIONS1: \$(echo fooVersion)
