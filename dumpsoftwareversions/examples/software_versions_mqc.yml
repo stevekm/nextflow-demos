@@ -1,0 +1,22 @@
+data: "<style>\n#nf-core-versions tbody:nth-child(even) {\n    background-color: #f2f2f2;\n\
+  }\n</style>\n<table class=\"table\" style=\"width:100%\" id=\"nf-core-versions\"\
+  >\n    <thead>\n        <tr>\n            <th> Process Name </th>\n            <th>\
+  \ Software </th>\n            <th> Version  </th>\n        </tr>\n    </thead>\n\
+  \n<tbody>\n<tr>\n    <td><samp>CUSTOM_DUMPSOFTWAREVERSIONS</samp></td>\n    <td><samp>python</samp></td>\n\
+  \    <td><samp>3.11.0</samp></td>\n</tr>\n\n<tr>\n    <td><samp></samp></td>\n \
+  \   <td><samp>yaml</samp></td>\n    <td><samp>6.0</samp></td>\n</tr>\n\n</tbody>\n\
+  <tbody>\n<tr>\n    <td><samp>MAKE_VERSIONS1</samp></td>\n    <td><samp>MAKE_VERSIONS1</samp></td>\n\
+  \    <td><samp>fooVersion</samp></td>\n</tr>\n\n<tr>\n    <td><samp></samp></td>\n\
+  \    <td><samp>container</samp></td>\n    <td><samp>ubuntu:22.04</samp></td>\n</tr>\n\
+  \n</tbody>\n<tbody>\n<tr>\n    <td><samp>MAKE_VERSIONS2</samp></td>\n    <td><samp>MAKE_VERSIONS2</samp></td>\n\
+  \    <td><samp>barVersion</samp></td>\n</tr>\n\n<tr>\n    <td><samp></samp></td>\n\
+  \    <td><samp>container</samp></td>\n    <td><samp>ubuntu:22.04</samp></td>\n</tr>\n\
+  \n</tbody>\n<tbody>\n<tr>\n    <td><samp>Workflow</samp></td>\n    <td><samp>Nextflow</samp></td>\n\
+  \    <td><samp>23.04.4</samp></td>\n</tr>\n\n<tr>\n    <td><samp></samp></td>\n\
+  \    <td><samp>dump-software-version-demo</samp></td>\n    <td><samp>1.0</samp></td>\n\
+  </tr>\n\n</tbody>\n</table>"
+description: are collected at run time from the software output.
+id: software_versions
+plot_type: html
+section_href: https://github.com/dump-software-version-demo
+section_name: dump-software-version-demo Software Versions

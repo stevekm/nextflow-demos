@@ -1,0 +1,6 @@
+"MAKE_VERSIONS:MAKE_VERSIONS2":
+    MAKE_VERSIONS2: barVersion
+    container: "ubuntu:22.04"
+"MAKE_VERSIONS:MAKE_VERSIONS1":
+    MAKE_VERSIONS1: fooVersion
+    container: "ubuntu:22.04"
