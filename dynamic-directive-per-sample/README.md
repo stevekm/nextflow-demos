@@ -44,7 +44,7 @@ Launching `main.nf` [special_kilby] DSL2 - revision: ebfe0a6481
 ...
 ```
 
-Manually modify one of the `memMB` values in the samplesheet and re-run with resume; in this case we changed the `memMB` value for Sample2 to "50". We can see that
+Manually modify one of the `memMB` values in the samplesheet and re-run with resume; in this case we changed the `memMB` value for Sample2 to "50". We can see that this step gets run again.
 
 ```
 $ nextflow run main.nf -resume
