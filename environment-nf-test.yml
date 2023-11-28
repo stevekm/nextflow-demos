@@ -11,6 +11,7 @@ dependencies:
   - nextflow>=23
   - nf-test>=0.8
   - python>=3.12
+  - prettier
   # - pip
   # pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
 
