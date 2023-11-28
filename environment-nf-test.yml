@@ -1,3 +1,6 @@
+# conda env for nf-test
+# https://github.com/askimed/nf-test
+
 # name: nf-test
 channels:
   - conda-forge
