@@ -16,3 +16,7 @@ dependencies:
   # pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
 
 
+# nf-test quick guide;
+# $ nf-test test --tag vcf2maf --profile docker --update-snapshot
+# $ nf-core modules lint vcf2maf
+# $ prettier --check .
