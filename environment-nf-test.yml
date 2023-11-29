@@ -1,6 +1,12 @@
 # conda env for nf-test
 # https://github.com/askimed/nf-test
 
+# USAGE:
+# $ conda env create -n nf-test2 -f environment-nf-test.yml
+
+# NOTE: do not need this anymore I think
+# pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
+
 # name: nf-test
 channels:
   - conda-forge
@@ -12,8 +18,9 @@ dependencies:
   - nf-test>=0.8
   - python>=3.12
   - prettier
-  # - pip
-  # pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
+  - pip
+  - pip:
+    - git+https://github.com/nf-core/tools.git@dev
 
 
 # nf-test quick guide;
