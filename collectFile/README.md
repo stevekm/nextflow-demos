@@ -1,33 +1,49 @@
 # `collectFile`
 
-This demonstration shows how to use the `collectFile` to concatenate output from multiple processes and then pass it to another process for processing. 
+This demonstration shows how to use the `collectFile` to concatenate output from multiple processes and then pass it to another process for processing.
 
-## Usage
+This demo will use various methods to collect data from Nextflow Channels and concatenate data based on samples with various output directory schemes.
 
-Pipeline can be run using the included `Makefile` with the command:
+- https://nextflow.io/docs/latest/operator.html#collectfile
 
-```
-make run
-```
-
-## Output
-
-The terminal output should look like this:
+Run the script
 
 ```
-$ make run
-./nextflow run main.nf
-N E X T F L O W  ~  version 19.01.0
-Launching `main.nf` [drunk_lavoisier] - revision: 4abc0baf16
-[warm up] executor > local
-[38/dfdec1] Submitted process > make_file (Sample1)
-[aa/fe3de2] Submitted process > make_file (Sample3)
-[14/84aa2e] Submitted process > make_file (Sample2)
-[make_file] Sample1
-[make_file] Sample3
-[make_file] Sample2
-[2c/0a41b1] Submitted process > print_collected_file (1)
-[print_collected_file (sample_files.txt)]: [make_file] Sample2
-[print_collected_file (sample_files.txt)]: [make_file] Sample3
-[print_collected_file (sample_files.txt)]: [make_file] Sample1
+$ nextflow run main.nf
+N E X T F L O W  ~  version 23.04.1
+Launching `main.nf` [high_stallman] DSL2 - revision: 26ecf4d000
+executor >  local (4)
+[02/8c2ee5] process > GET_VALUE (4) [100%] 4 of 4 ✔
+```
+
+Check the output
+
+```
+$ tree output
+output
+├── GET_VALUE
+│   ├── Sample1.value.tsv
+│   ├── Sample1.value.txt
+│   ├── Sample2.value.tsv
+│   ├── Sample2.value.txt
+│   ├── Sample3.value.tsv
+│   ├── Sample3.value.txt
+│   ├── Sample4.value.tsv
+│   └── Sample4.value.txt
+├── GET_VALUE_collectFile
+│   └── allSamples.allValues.tsv
+├── meta_ch
+│   └── allSamples.json
+├── samples
+│   ├── Sample1.json
+│   ├── Sample2.json
+│   ├── Sample3.json
+│   └── Sample4.json
+├── samples_ch
+│   └── samples.collectFile.txt
+└── subdirs
+    ├── S1
+    │   └── S1.txt
+    └── S2
+        └── S2.txt
 ```
