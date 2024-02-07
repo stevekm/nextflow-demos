@@ -27,3 +27,9 @@ Use custom `workflow.onComplete` handler
 ```bash
 $ nextflow -c custom-onComplete.config run main.nf ...
 ```
+
+Use custom embedded template that is saved as a template string in the config file
+
+```bash
+$ nextflow -c custom-embedded-template.config run main.nf ...
+```
