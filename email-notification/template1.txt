@@ -1,6 +1,0 @@
-Hellow this is email template template1.txt
-
-Run Name: ${workflow.runName}
-
-Your params were:
-${params}

@@ -1,0 +1,7 @@
+Hellow this is email template: templates/custom-notification-template.txt
+
+Run Name: ${workflow.runName}
+
+Your params were:
+params.val1: ${params.val1}
+params.val2: ${params.val2}

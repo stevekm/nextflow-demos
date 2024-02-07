@@ -7,15 +7,23 @@ Usage of the default email notification, and custom notification email, using te
 - https://github.com/nextflow-io/nextflow/blob/master/modules/nextflow/src/main/resources/nextflow/mail/notification.txt
   - https://github.com/nextflow-io/nextflow/blob/master/modules/nextflow/src/main/resources/nextflow/mail/notification.html
 
-Run with
+#### Default Notification
 
+```bash
+$ nextflow run main.nf --emailTo ... --emailFrom ... --smtpHost ... --smtpPort ... --smtpUser ... --smtpPassword ... --smtpProtocols ...
 ```
-nextflow run main.nf --emailTo ...
-```
+
+#### Custom Notifications
 
 Use custom notification template
 
+```bash
+$ nextflow -c custom-notification.config run main.nf ...
 ```
-nextflow -c custom-notification.config run main.nf --emailTo ...
+- NOTE: requires Nextflow version 23.10.1 or later
+
+Use custom `workflow.onComplete` handler
+
+```bash
+$ nextflow -c custom-onComplete.config run main.nf ...
 ```
-- NOTE: this does not yet work but will soon with updated versions of Nextflow
