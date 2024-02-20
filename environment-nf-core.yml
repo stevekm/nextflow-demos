@@ -1,0 +1,33 @@
+# Need to run these exact commands to get the env created correctly;  https://bioconda.github.io/#usage
+# conda create -y -n nf-core
+# conda activate nextflow
+# conda config --env --add channels defaults
+# conda config --env --add channels bioconda
+# conda config --env --add channels conda-forge
+# conda config --env --set channel_priority strict
+# conda env update --name nf-core --file environment-nf-core.yml
+
+# NOTE: if you have trouble getting it to install, then try removing the nf-core modules
+
+# NOTE: might need to update base conda;
+# $ conda update -n base -c defaults conda
+
+# NOTE: alternative way to try installing the env;
+
+# easier command to create the env that might not work because it sits spinning trying to resolve the packages forever when nf-core is included
+# $ conda env create -f environment-nf-core.yml -n nf-core
+# $ conda activate nf-core
+
+# TODO: add nf-test https://code.askimed.com/nf-test/installation/
+# $ wget -qO- https://code.askimed.com/install/nf-test | bash
+
+name: nextflow
+channels:
+  - conda-forge
+  - bioconda
+  - anaconda
+  - defaults
+dependencies:
+  - python>=3.11
+  - nextflow>=23.10
+  - nf-core>=2.8 # this causes the conda install to take a looooooong time unless the strict channel priority is used
