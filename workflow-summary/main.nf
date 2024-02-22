@@ -47,7 +47,7 @@ ${summary.collect { k,v -> "            <dt>$k</dt><dd><samp>${v ?: '<span style
         </dl>
         """.stripIndent()
         return yaml_str
-    }.collectFile(name: "workflow_summary_mqc.yaml")
+    }.collectFile(name: "workflow_summary_mqc.yaml", storeDir: "${params.outdir}")
 
     files_ch = files_ch.mix(
         yaml_ch
