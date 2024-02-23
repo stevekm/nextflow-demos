@@ -36,6 +36,18 @@ workflow {
     summary << workflow.properties
     summary << workflow.manifest.properties
 
+    // or make a list of only select params to use, in case some params might have things we
+    // dont want to publish
+    // https://www.baeldung.com/groovy-map-iterating
+    keep_params = ["val1", "val3", "outdir"]
+    // make a new dict with only things we want to print into the table
+    table_params = [:]
+    for (param in params) {
+        if ( param.key in keep_params ) {
+            table_params << param
+        }
+    }
+
     yaml_ch = Channel.from("").map{ it ->
         // NOTE: some of these are repeated from the manifest
         // NOTE: the indentataion is important here for the YAML!
@@ -52,7 +64,7 @@ workflow {
         Put some custom text here!<br><br>
         <b>Pipeline Parameters</b><br>
         <dl class=\"dl-horizontal\">
-${params.collect { k,v -> "            <dt>$k</dt><dd><samp>${v ?: '<span style=\"color:#999999;\">N/A</a>'}</samp></dd>" }.join("\n")}
+${table_params.collect { k,v -> "            <dt>$k</dt><dd><samp>${v ?: '<span style=\"color:#999999;\">N/A</a>'}</samp></dd>" }.join("\n")}
         </dl>
         <br>
         <b>Workflow Parameters</b><br>
