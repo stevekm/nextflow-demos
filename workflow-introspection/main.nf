@@ -18,10 +18,22 @@ process FOO {
     println "--------- FOO end -----------"
 }
 
+process BUZZ {
+    tag "buzz_tag"
+
+    script:
+    """
+    echo "-------- BUZZ start ----------"
+    echo '${task.properties.sort{it.key}.collect{it}.join('\n')}'
+    echo "--------- BUZZ end -----------"
+    """
+}
+
 workflow {
     FOO()
     BAR("Sample1")
     BAZZ("Sample1")
+    BUZZ()
     println "--------- workflow start -----------"
     println workflow
     println "${workflow.properties.sort{it.key}.collect{it}.join('\n')}"
