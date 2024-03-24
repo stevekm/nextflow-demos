@@ -6,3 +6,52 @@ Configuring your pipeline to run with AWS Batch is too complex for a simple demo
 - https://t-neumann.github.io/pipelines/AWS-pipeline/
 - https://apeltzer.github.io/post/01-aws-nfcore/
 - https://seqera.io/blog/nextflow-and-aws-batch-inside-the-integration-part-2-of-3/
+
+
+## Add Swap to your EC2 instance
+
+If you chose a micro sized EC2 instance with only 1GB of memory, you may run out of memory when trying ot install Miniconda
+
+```bash
+$ $HOME/miniconda/bin/conda install -c conda-forge -y awscli
+
+Channels:
+ - conda-forge
+ - defaults
+Platform: linux-64
+Collecting package metadata (repodata.json): done
+Solving environment: \ Out of memory allocating 427819008 bytes!
+Aborted
+```
+
+One solution is to add a 1GB Swap file and enable it for use in the instance
+
+- https://www.howtogeek.com/455981/how-to-create-a-swap-file-on-linux/
+
+```bash
+# we have 8GB of space on the local attached EBS
+$ df -H
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        502M   82k  502M   1% /dev
+tmpfs           511M     0  511M   0% /dev/shm
+/dev/xvda1      8.5G  4.1G  4.4G  48% /
+
+# prepare a file for Swap
+$ sudo dd if=/dev/zero of=/swapfile bs=1024 count=1048576
+
+$ sudo mkswap /swapfile
+
+$ sudo chmod 600 /swapfile
+
+$ sudo swapon /swapfile
+
+# optional: add to /etc/fstab
+# /swapfile none swap sw 0 0
+
+# check swap
+$ swapon --show
+NAME      TYPE  SIZE  USED PRIO
+/swapfile file 1024M 33.3M   -2
+```
+
+Now we should have enough memory to install Miniconda and `awscli`
