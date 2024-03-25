@@ -6,7 +6,7 @@ process ECHO {
     tag "${x}"
     publishDir "${params.outdir}"
 
-    container "ubuntu:latest"
+    // container "ubuntu:latest"
 
     input:
     val(x)
@@ -18,6 +18,9 @@ process ECHO {
     output_file = "${x}.output.txt"
     """
     echo "${x}" > "${output_file}"
+
+    # so that we can have time to see the job running in the AWS console
+    sleep 15
     """
 }
 
