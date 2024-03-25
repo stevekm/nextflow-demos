@@ -8,6 +8,16 @@ Configuring your pipeline to run with AWS Batch is too complex for a simple demo
 - https://seqera.io/blog/nextflow-and-aws-batch-inside-the-integration-part-2-of-3/
 
 
+## Demo Pipeline
+
+Step 1: Update the included pipeline's `conf/awsbatch.config` file to match your AWS account's Batch settings
+
+Step 2: Run pipeline with a command like this
+
+```bash
+nextflow run main.nf -profile awsbatch
+```
+
 ## Add Swap to your EC2 instance
 
 If you chose a micro sized EC2 instance with only 1GB of memory, you may run out of memory when trying ot install Miniconda
