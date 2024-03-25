@@ -18,6 +18,13 @@ Step 2: Run pipeline with a command like this
 nextflow run main.nf -profile awsbatch
 ```
 
+for convenience, you can also pass in the required configs from `params` like this
+
+```bash
+nextflow run main.nf -profile awsbatch --workDir s3://foo-bar-nf-work --queue
+my-job-queue
+```
+
 ## Add Swap to your EC2 instance
 
 If you chose a micro sized EC2 instance with only 1GB of memory, you may run out of memory when trying ot install Miniconda
