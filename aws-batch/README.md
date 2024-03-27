@@ -30,7 +30,35 @@ Configuring your pipeline to run with AWS Batch is too complex for a simple demo
   - navigate to the instance page and copy the Public IPv4 DNS (`ec2-xx-yy-zz-qq.compute-1.amazonaws.com`)
   - `ssh` into your instance
     - `ssh -i ~/.ssh/my-aws-key.pem ec2-user@ec2-xx-yy-zz-qq.compute-1.amazonaws.com`
-  -
+  - install required dependencies
+
+```bash
+sudo yum install -y bzip2 wget
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh -b -f -p $HOME/miniconda
+# this might break if you have less than 2GB memory; if so see the "add swap" instructions below
+$HOME/miniconda/bin/conda install -c conda-forge -y awscli
+./miniconda/bin/aws --version
+# aws-cli/1.32.70 Python/3.12.2 Linux/4.14.336-180.566.amzn1.x86_64 botocore/1.34.70
+
+# make sure Docker is pre-installed
+which docker
+# /usr/bin/docker
+```
+  - save the AMI in the EC2 dashboard from the running EC2 instance
+  - you can now terminate the EC2
+
+- Create Compute Environment
+  - AWS Batch > Compute Environments > Create Compute Environment > EC2
+    - service role: AWSBatchServiceRole
+    - instance role: ecsInstanceRole
+    - min CPUs 0; desired CPUs 0; maximum CPUs 10; optimal instance types
+    - add EC2 key pair
+    - **add the AMI from the previous step to the AMI ID Override**
+
+- Create Job Queue
+  - AWS Batch > Job Queues > Create Job Queue
+  - add Connected Compute Environment
 
 
 
