@@ -13,6 +13,26 @@ Configuring your pipeline to run with AWS Batch is too complex for a simple demo
 - make an account with AWS https://aws.amazon.com/ and log in to the web dashboard
   - make sure to configure an IAM user, and configure MFA for both root and IAM user accounts
   - add a local cli key with `aws configure` using the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- create IAM User Group with the following Roles and add the IAM User to the Group
+  - AmazonS3FullAccess
+  - ... (insert list of roles here...)
+- Create AMI by first starting an EC2 instance
+  - EC2 > Launch Instance > Browse More AMI's
+    - AWS Marketplace AMIs > search for "Amazon ECS-Optimized Linux AMI"
+    - scroll down until you find this one https://aws.amazon.com/marketplace/pp/prodview-2l3oufmhdyhrg?sr=0-2&ref_=beagle&applicationId=AWS-EC2-Console
+      - amzn-ami-2018.03.20240319-amazon-ecs-optimized ; ami-093d9f343e2236e99
+  - choose an t2.small EC2 instance type with 2GB memory to avoid low-memory issues
+  - select a key pair (create one if you dont have it already)
+    - make sure to store the .pem key file in a safe place such as `~/.ssh` with proper `chmod 600` permissions
+  - include 30GB free tier EBS storage (total between root volume 8GB and EBS volume 22GB)
+  - most of the rest of the settings can be left at default
+  - launch instance
+  - navigate to the instance page and copy the Public IPv4 DNS (`ec2-xx-yy-zz-qq.compute-1.amazonaws.com`)
+  - `ssh` into your instance
+    - `ssh -i ~/.ssh/my-aws-key.pem ec2-user@ec2-xx-yy-zz-qq.compute-1.amazonaws.com`
+  -
+
+
 
 ## Demo Pipeline
 
