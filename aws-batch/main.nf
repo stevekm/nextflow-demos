@@ -6,7 +6,8 @@ process ECHO {
     tag "${x}"
     publishDir "${params.outdir}"
 
-    // container "ubuntu:latest"
+    // make sure to use Ubuntu or Debian based containers for best Nextflow compatibility
+    container "ubuntu:latest"
 
     input:
     val(x)
