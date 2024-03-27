@@ -6,7 +6,13 @@ Configuring your pipeline to run with AWS Batch is too complex for a simple demo
 - https://t-neumann.github.io/pipelines/AWS-pipeline/
 - https://apeltzer.github.io/post/01-aws-nfcore/
 - https://seqera.io/blog/nextflow-and-aws-batch-inside-the-integration-part-2-of-3/
+- https://www.udemy.com/course/aws-certified-cloud-practitioner-training-course/
 
+## Setup
+
+- make an account with AWS https://aws.amazon.com/ and log in to the web dashboard
+  - make sure to configure an IAM user, and configure MFA for both root and IAM user accounts
+  - add a local cli key with `aws configure` using the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
 ## Demo Pipeline
 
