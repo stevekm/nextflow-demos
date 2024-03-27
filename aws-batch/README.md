@@ -60,7 +60,9 @@ which docker
   - AWS Batch > Job Queues > Create Job Queue
   - add Connected Compute Environment
 
+If you have issues, check some of these
 
+- AWS Batch > Permissions > "Grant AWS Batch permission to interface with Elastic Container Service (ECS) clusters settings"
 
 ## Demo Pipeline
 
