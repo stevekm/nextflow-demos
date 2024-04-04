@@ -40,4 +40,23 @@ workflow {
     println "-------- workflow manifest properties ----------"
     println "${workflow.manifest.properties.sort{it.key}.collect{it}.join('\n')}"
     println "--------- workflow end -----------"
+    // nextflow.trace.ReportObserver.renderPayloadJson()
+
+    // reportObserver = new nextflow.trace.ReportObserver();
+    // reportObserver.renderPayloadJson()
+}
+
+workflow.onComplete {
+    println " --------- workflow.onComplete start -----------"
+
+    println nextflow.Session
+
+    // TODO: try out some of these methods...
+    // println workflow
+    // println "${workflow.properties.sort{it.key}.collect{it}.join('\n')}"
+    // nextflow.trace.ReportObserver.renderPayloadJson()
+    // reportObserver = new nextflow.trace.ReportObserver();
+    //reportObserver.renderPayloadJson()
+
+    println " --------- workflow.onComplete end -----------"
 }
