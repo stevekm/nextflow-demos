@@ -9,31 +9,42 @@ This demo shows how to collect all task process versions using the new (at the t
 NOTE: This demo also uses Docker so make sure your system has that available to run
 
 ```bash
-$ NXF_VER=24.02.0-edge nextflow run main.nf
+$ NXF_VER=24.03.0-edge nextflow run main.nf
 
- N E X T F L O W   ~  version 24.02.0-edge
+ N E X T F L O W   ~  version 24.03.0-edge
 
- ┃ Launching `main.nf` [wise_kalam] DSL2 - revision: d1f0a7b175
+Launching `main.nf` [reverent_saha] DSL2 - revision: 3ab6f47aa0
 
-executor >  local (9)
-[a0/3ea8c0] process > FOO (Sample3)                 [100%] 3 of 3 ✔
-[bd/8929c3] process > _SUBWORKFLOW:BARBAR (Sample3) [100%] 3 of 3 ✔
-[c9/ef0698] process > BAR_SUBWORKFLOW:BAZ (Sample3) [100%] 3 of 3 ✔
-
-FOO:
-    version: v1.1
-    container: ubuntu:latest
-
+executor >  local (12)
+[9e/50d758] process > FOO (Sample1)                         [100%] 3 of 3 ✔
+[6f/656052] process > MULTIQC_SUBWORKFLOW:MULTIQC (Sample1) [100%] 3 of 3 ✔
+[ae/0de2dc] process > MULTIQC_SUBWORKFLOW:BAZ (Sample1)     [100%] 3 of 3 ✔
+[c3/250942] process > MULTIQC_SUBWORKFLOW:FASTQC (Sample3)  [100%] 3 of 3 ✔
 
 BAZ:
+    software: baz_program
     version: 4.3.1
     container: ubuntu:latest
+    id: MULTIQC_SUBWORKFLOW:BAZ
 
 
-BAR:
+FOO:
+    software: foo_program
+    version: v1.1
+    container: ubuntu:latest
+    id: FOO
+
+
+FASTQC:
+    software: fastqc
+    version: 0.11.9
+    container: quay.io/biocontainers/fastqc:0.11.9--0
+    id: MULTIQC_SUBWORKFLOW:FASTQC
+
+
+MULTIQC:
+    software: multiqc
     version: 1.14
     container: quay.io/biocontainers/multiqc:1.14--pyhdfd78af_0
-
+    id: MULTIQC_SUBWORKFLOW:MULTIQC
 ```
-
-- NOTE: see issue here about `eval` pipe handling https://github.com/nextflow-io/nextflow/issues/4870
