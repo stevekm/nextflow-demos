@@ -63,10 +63,15 @@ process BAZ {
 
     output:
     // simple `eval` but no sed pipe needed
+    // This process has multiple softwares that get emitted individually
     tuple val(task.process),
         val(task.container),
-        val("baz_program"),
+        val("baz1_program"),
         eval('echo 4.3.1'), topic: versions
+    tuple val(task.process),
+        val(task.container),
+        val("baz2_program"),
+        eval('echo 5.6'), topic: versions
 
     script:
     """
