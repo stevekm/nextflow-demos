@@ -30,7 +30,7 @@ executor >  local (2)
     "sampleID": "Sample1",
     "sampleType": "fooType"
 }
->>> READ_JSON inputJsonPath: /Users/skelly/projects/nextflow-demos/metaMap-write-JSON/work/bf/4af999fd8b6b89e143b11274621c2e/meta.json
+>>> READ_JSON inputJsonPath: /Users/me/projects/nextflow-demos/metaMap-write-JSON/work/bf/4af999fd8b6b89e143b11274621c2e/meta.json
 >>> READ_JSON contents: {
     "sampleID": "Sample1",
     "sampleType": "fooType"
