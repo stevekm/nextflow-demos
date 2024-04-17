@@ -26,6 +26,7 @@ process MULTIQC {
 
     output:
     // using `eval` but need to use a | with sed
+    // this one wraps with bash -c
     tuple val(task.process),
         val(task.container),
         val("multiqc"),
@@ -45,10 +46,11 @@ process FASTQC {
 
     output:
     // using `eval` but need to use a | with sed
+    // this one does not use bash -c wrapping
     tuple val(task.process),
         val(task.container),
         val("fastqc"),
-        eval('bash -c "fastqc --version | sed -e \'s/FastQC v//g\'"'), topic: versions
+        eval('fastqc --version | sed -e \'s/FastQC v//g\''), topic: versions
 
     script:
     """
@@ -95,6 +97,8 @@ workflow {
     MULTIQC_SUBWORKFLOW(input_ch)
 
     // get unique version strings parsed into a YAML mapping
+    // NOTE: This is a LEGACY versions tracking method that probably should not be continued
+    // but is included for example usage
     channel.topic('versions').map { proc, container, tool, vers ->
         // if it has a ':' from a subworkflow name, then remove it and return the last item
         def proc_label = proc.contains(":") ? proc.tokenize(':').tail()[0] : proc
@@ -111,5 +115,17 @@ ${proc_label}:
 
         return vers_str
     }.unique().view()
+
+
+    // get the versions and convert them to Map objects for easier handling downstream
+    // this is probably the better method for using these!
+    channel.topic('versions').map { proc, container, tool, vers ->
+        return [
+            "process": proc,
+            "container": container,
+            "software": tool,
+            "version": vers
+        ]
+    }.unique().collect().view()
 
 }
