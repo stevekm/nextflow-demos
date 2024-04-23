@@ -23,6 +23,7 @@ process FOO {
     // NOTE: also try task.name
     tuple val(task.process), val(task.container), val("foo_program"), val("v1.1"), topic: versions
     tuple val(id), val(task.process), path(".command.sh"), topic: commands
+    tuple val(id), val(task.process), topic: logs
     // NOTE: this does not work // tuple val(id), val(task.process), path(".command.sh", name: "${id}.${task.process}.txt"), topic: commands
 
     script:
@@ -45,6 +46,7 @@ process MULTIQC {
         val(task.container),
         val("multiqc"),
         eval('bash -c "multiqc --version | sed -e \'s/multiqc, version //g\'"'), topic: versions
+    tuple val(id), val(task.process), topic: logs
 
     script:
     """
@@ -60,6 +62,7 @@ process FASTQC {
 
     output:
     tuple val(id), val(task.process), path(".command.sh"), topic: commands
+    tuple val(id), val(task.process), topic: logs
     // using `eval` but need to use a | with sed
     // this one does not use bash -c wrapping
     tuple val(task.process),
@@ -80,6 +83,7 @@ process BAZ {
 
     output:
     tuple val(id), val(task.process), path(".command.sh"), topic: commands
+    tuple val(id), val(task.process), topic: logs
     // simple `eval` but no sed pipe needed
     // This process has multiple softwares that get emitted individually
     tuple val(task.process),
@@ -147,6 +151,10 @@ ${proc_label}:
     // save each sample into a different file
     channel.topic("commands").collectFile(storeDir:"${params.collectDir}") { id, proc, cmdtxt ->
         return [ "${id}.${proc}.command.txt".replace(":", "_"), cmdtxt.text ]
+    }
+    // save each entry to a log file
+    channel.topic("logs").collectFile(storeDir:"${params.collectDir}", newLine:true) { id, proc ->
+        return [ "logs.txt", "${id},${proc}" ]
     }
 
 }
