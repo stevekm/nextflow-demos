@@ -1,8 +1,19 @@
 nextflow.enable.dsl=2
 nextflow.preview.topic = true
 
+params.outdir = "output"
+params.collectDir = "commands"
+
 process FOO {
     tag "${id}"
+    // example method:
+    // output the file with a different name
+    publishDir "${params.outdir}", mode: "copy", overwrite: true, saveAs: { filename ->
+            if (filename == ".command.sh"){
+                return "${id}.${task.process}.command.txt"
+            }
+        return filename
+    }
 
     input:
     val(id)
@@ -11,9 +22,12 @@ process FOO {
     // simple example with static version label using `val`
     // NOTE: also try task.name
     tuple val(task.process), val(task.container), val("foo_program"), val("v1.1"), topic: versions
+    tuple val(id), val(task.process), path(".command.sh"), topic: commands
+    // NOTE: this does not work // tuple val(id), val(task.process), path(".command.sh", name: "${id}.${task.process}.txt"), topic: commands
 
     script:
     """
+    echo "${id}"
     """
 }
 
@@ -45,6 +59,7 @@ process FASTQC {
     val(id)
 
     output:
+    tuple val(id), val(task.process), path(".command.sh"), topic: commands
     // using `eval` but need to use a | with sed
     // this one does not use bash -c wrapping
     tuple val(task.process),
@@ -64,6 +79,7 @@ process BAZ {
     val(id)
 
     output:
+    tuple val(id), val(task.process), path(".command.sh"), topic: commands
     // simple `eval` but no sed pipe needed
     // This process has multiple softwares that get emitted individually
     tuple val(task.process),
@@ -127,5 +143,10 @@ ${proc_label}:
             "version": vers
         ]
     }.unique().collect().view()
+
+    // save each sample into a different file
+    channel.topic("commands").collectFile(storeDir:"${params.collectDir}") { id, proc, cmdtxt ->
+        return [ "${id}.${proc}.command.txt".replace(":", "_"), cmdtxt.text ]
+    }
 
 }
