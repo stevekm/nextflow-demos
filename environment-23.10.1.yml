@@ -7,10 +7,13 @@
 # conda config --env --set channel_priority strict
 # conda env update --name nextflow-23.10.1 --file environment-23.10.1.yml
 
+# Or try this
+# conda env create -n nextflow-23.10.1 -f environment-23.10.1.yml
+
 # NOTE: might need to update base conda;
 # $ conda update -n base -c defaults conda
 
-name: nextflow-23.10.1
+# name: nextflow-23.10.1
 channels:
   - conda-forge
   - bioconda
@@ -19,5 +22,6 @@ channels:
 dependencies:
   - python>=3.11
   - nextflow=23.10.1
+  - nf-test=nf-test=0.8.4
 #  - pytest-workflow>=1.6 # make sure to get the version from conda-forge !!
 #  - nf-core>=2.7 # this causes the conda install to take a looooooong time unless the strict channel priority is used
