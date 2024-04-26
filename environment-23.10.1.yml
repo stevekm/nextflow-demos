@@ -22,6 +22,6 @@ channels:
 dependencies:
   - python>=3.11
   - nextflow=23.10.1
-  - nf-test=nf-test=0.8.4
+  - nf-test=0.8.4
 #  - pytest-workflow>=1.6 # make sure to get the version from conda-forge !!
 #  - nf-core>=2.7 # this causes the conda install to take a looooooong time unless the strict channel priority is used
