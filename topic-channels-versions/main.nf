@@ -154,7 +154,7 @@ ${proc_label}:
     }
     // save each entry to a log file
     channel.topic("logs").collectFile(storeDir:"${params.collectDir}", newLine:true) { id, proc ->
-        return [ "logs.txt", "${id},${proc}" ]
+        return [ "${id}.logs.txt", "${id},${proc}" ]
     }
 
 }
