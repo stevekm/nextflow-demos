@@ -17,8 +17,8 @@
 channels:
   - conda-forge
   - bioconda
-  - anaconda
-  - defaults
+#  - anaconda
+#  - defaults
 dependencies:
   - python>=3.11
   - nextflow=23.10.1
