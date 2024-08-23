@@ -11,8 +11,6 @@
 channels:
   - conda-forge
   - bioconda
-  - anaconda
-  - defaults
 dependencies:
   - nextflow>=23
   - nf-test>=0.8
