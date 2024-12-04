@@ -3,7 +3,9 @@ process BAZ {
     debug true
     script:
     """
-    echo "\$(baz.sh) inside BAZ process"
-    echo "\$(bar.sh) inside BAZ process"
+    baz.sh
+    echo "inside BAZ process"
+    bar.sh
+    echo "inside BAZ process"
     """
 }

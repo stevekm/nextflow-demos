@@ -15,7 +15,8 @@ process BAR {
     debug true
     script:
     """
-    echo "\$(bar.sh) inside BAR process"
+    bar.sh
+    echo "inside BAR process"
     """
 }
 
