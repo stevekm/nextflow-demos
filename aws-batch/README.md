@@ -4,7 +4,7 @@ Configuring your pipeline to run with AWS Batch is too complex for a simple demo
 
 - https://www.nextflow.io/docs/latest/awscloud.html
 - https://t-neumann.github.io/pipelines/AWS-pipeline/
-- https://apeltzer.github.io/post/01-aws-nfcore/
+- https://web.archive.org/web/20220419130401/https://apeltzer.github.io/post/01-aws-nfcore/
 - https://seqera.io/blog/nextflow-and-aws-batch-inside-the-integration-part-2-of-3/
 - https://www.udemy.com/course/aws-certified-cloud-practitioner-training-course/
 
