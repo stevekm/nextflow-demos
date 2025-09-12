@@ -2,6 +2,10 @@
 
 Demo of usage of Nextflow topic channels to gather up a list of the samples that passed each step of the pipeline, and make a simple table out of it that can be used later in a custom reporting step
 
+- https://nextflow.io/docs/latest/reference/channel.html#topic
+
+- https://www.nextflow.io/docs/latest/reference/operator.html#collectfile
+
 ```bash
 $ nextflow run main.nf
  N E X T F L O W   ~  version 25.04.6
