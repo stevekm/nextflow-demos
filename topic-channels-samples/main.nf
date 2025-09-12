@@ -1,12 +1,12 @@
 process DO_THING {
-    debug true
+    // debug true
     errorStrategy "ignore"
 
     input:
     val(x)
 
     output:
-    val("DO_THING - ${sampleID}"), topic: passed
+    tuple val(sampleID), val("${task.process}"), topic: passed
 
     script:
     sampleID = "${x}"
@@ -17,20 +17,38 @@ process DO_THING {
 }
 
 process DO_THING2 {
-    debug true
+    // debug true
     errorStrategy "ignore"
 
     input:
     val(x)
 
     output:
-    val("DO_THING2 - ${sampleID}"), topic: passed
+    tuple val(sampleID), val("${task.process}"), topic: passed
 
     script:
     sampleID = "${x}"
     """
     echo "got $x"
     if [ "$x" == "Sample2" ]; then echo "bad sample!"; exit 1; fi
+    """
+}
+
+process DO_THING3 {
+    // debug true
+    errorStrategy "ignore"
+
+    input:
+    val(x)
+
+    output:
+    tuple val(sampleID), val("${task.process}"), topic: passed
+
+    script:
+    sampleID = "${x}"
+    """
+    echo "got $x"
+    if [ "$x" == "Sample3" ]; then echo "bad sample!"; exit 1; fi
     """
 }
 
@@ -50,17 +68,29 @@ process FAKE_MULTIQC {
 }
 
 workflow {
-    println("hello")
-
     samples = Channel.from("Sample1", "Sample2", "Sample3", "Sample4")
+
+    // list all the input samples
+    inputSamples = samples.map { sampleID ->
+        return [sampleID, "INPUT"]
+    }
 
     DO_THING(samples)
     DO_THING2(samples)
+    DO_THING3(samples)
 
     // view the samples that passed
-    channel.topic("passed").collect().view()
+    allSamples = inputSamples.concat(channel.topic("passed")).map { sampleID, items ->
+        // NOTE: need to force all the sampleID's back to the default string type
+        // you can check the data types with; println sampleID.getClass()
+        return [sampleID.toString(), items]
+    }.groupTuple()
+    // allSamples.view()
 
     // make a table out of the passing samples
-    samplesTable = channel.topic("passed").collectFile(name: "passed.txt", storeDir: "output", newLine: true)
+    samplesTable = allSamples.map { sampleId, processList  ->
+            return "${sampleId}\t${processList}"
+        }
+        .collectFile(name: "passed.txt", storeDir: "output", newLine: true)
     FAKE_MULTIQC(samplesTable)
 }

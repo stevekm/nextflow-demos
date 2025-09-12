@@ -7,39 +7,23 @@ Demo of usage of Nextflow topic channels to gather up a list of the samples that
 - https://www.nextflow.io/docs/latest/reference/operator.html#collectfile
 
 ```bash
-$ nextflow run main.nf
  N E X T F L O W   ~  version 25.04.6
 
-Launching `main.nf` [serene_becquerel] DSL2 - revision: b75a748b98
+Launching `main.nf` [angry_bohr] DSL2 - revision: dee9984d25
 
-hello
-executor >  local (9)
-[fc/a1552a] DO_THING (4)     [100%] 4 of 4, ignored: 1 ✔
-[7b/0a4d4a] DO_THING2 (4)    [100%] 4 of 4, ignored: 1 ✔
-[d5/66c602] FAKE_MULTIQC (1) [100%] 1 of 1 ✔
-got Sample2
-
-got Sample3
-
-got Sample3
-
-got Sample1
-
-got Sample4
-
-got Sample4
-
-['DO_THING2 - Sample3', 'DO_THING - Sample2', 'DO_THING2 - Sample1', 'DO_THING - Sample3', 'DO_THING2 - Sample4', 'DO_THING - Sample4']
+executor >  local (13)
+[f4/3d05e2] DO_THING (4)     [100%] 4 of 4, ignored: 1 ✔
+[18/dc12be] DO_THING2 (4)    [100%] 4 of 4, ignored: 1 ✔
+[35/40ed8c] DO_THING3 (2)    [100%] 4 of 4, ignored: 1 ✔
+[10/5e541c] FAKE_MULTIQC (1) [100%] 1 of 1 ✔
 put your multiqc with the table here
 here is your table:
-DO_THING2 - Sample3
-DO_THING - Sample2
-DO_THING - Sample4
-DO_THING2 - Sample4
-DO_THING2 - Sample1
-DO_THING - Sample3
+Sample1	[INPUT, DO_THING3, DO_THING2]
+Sample3	[INPUT, DO_THING, DO_THING2]
+Sample2	[INPUT, DO_THING, DO_THING3]
+Sample4	[INPUT, DO_THING2, DO_THING, DO_THING3]
 
-[be/8a2fae] NOTE: Process `DO_THING2 (2)` terminated with an error exit status (1) -- Error is ignored
-[1f/86dd11] NOTE: Process `DO_THING (1)` terminated with an error exit status (1) -- Error is ignored
-
+[39/7268ee] NOTE: Process `DO_THING (1)` terminated with an error exit status (1) -- Error is ignored
+[fe/e4349a] NOTE: Process `DO_THING3 (3)` terminated with an error exit status (1) -- Error is ignored
+[4e/9a0831] NOTE: Process `DO_THING2 (2)` terminated with an error exit status (1) -- Error is ignored
 ```
