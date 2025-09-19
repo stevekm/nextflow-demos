@@ -52,18 +52,20 @@ process DO_THING3 {
     """
 }
 
-process FAKE_MULTIQC {
+process MULTIQC {
     // put your multiqc here to do thing with the table you made
     debug true
+    publishDir "output", mode: "copy"
 
     input:
     path(input_file)
 
+    output:
+    path("multiqc_report.html")
+
     script:
     """
-    echo "put your multiqc with the table here"
-    echo "here is your table:"
-    cat "${input_file}"
+    multiqc --force .
     """
 }
 
@@ -85,12 +87,23 @@ workflow {
         // you can check the data types with; println sampleID.getClass()
         return [sampleID.toString(), items]
     }.groupTuple()
-    // allSamples.view()
+    // Sample1	[INPUT, DO_THING2, DO_THING3]
+    // Sample3	[INPUT, DO_THING2, DO_THING]
+    // Sample4	[INPUT, DO_THING, DO_THING2, DO_THING3]
+    // Sample2	[INPUT, DO_THING3, DO_THING]
 
-    // make a table out of the passing samples
-    samplesTable = allSamples.map { sampleId, processList  ->
-            return "${sampleId}\t${processList}"
-        }
-        .collectFile(name: "passed.txt", storeDir: "output", newLine: true)
-    FAKE_MULTIQC(samplesTable)
+    // make a single .tsv table from the entries
+    samplesTable = allSamples.collectFile(storeDir: "output", newLine: false, keepHeader: true){ sampleID, processList ->
+        // make a header line; only the first will get saved in the output table
+        def header = "SampleID\tTasks"
+        // make the table row
+        def line = "${sampleID}\t${processList}"
+        // combine the header and row
+        def lines = "${header}\n${line}\n"
+
+        // NOTE: files with name '*_mqc.tsv' will get imported to MultiQC automatically
+        return ["passed_samples_mqc.tsv", lines]
+    }
+
+    MULTIQC(samplesTable)
 }
