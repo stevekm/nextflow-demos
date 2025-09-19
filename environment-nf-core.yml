@@ -1,3 +1,13 @@
+# conda env for Nextflow and nf-core testing
+
+# USAGE:
+# conda env create -f environment-nf-core.yml -n nf-core
+# conda activate nf-core
+
+# NOTE: Make sure you are using the Miniforge distro of conda;
+# https://github.com/conda-forge/miniforge
+
+# NOTE: in older versions it was required to run these commands in sequence to get this env to install correctly but this is no longer needed it seems
 # Need to run these exact commands to get the env created correctly;  https://bioconda.github.io/#usage
 # conda create -y -n nf-core
 # conda activate nextflow
@@ -14,18 +24,19 @@
 
 # NOTE: alternative way to try installing the env;
 
-# easier command to create the env that might not work because it sits spinning trying to resolve the packages forever when nf-core is included
-# $ conda env create -f environment-nf-core.yml -n nf-core
-# $ conda activate nf-core
-
 # TODO: add nf-test https://code.askimed.com/nf-test/installation/
 # $ wget -qO- https://code.askimed.com/install/nf-test | bash
 
-name: nextflow
+name: nf-core
 channels:
   - conda-forge
   - bioconda
 dependencies:
   - python>=3.11
   - nextflow>=23.10
-  - nf-core>=2.8 # this causes the conda install to take a looooooong time unless the strict channel priority is used
+  - nf-core>=2.8
+  # add some extra items for QoL in various Nextflow demos
+  - tower-cli
+  - jq
+  - yq
+  - multiqc
