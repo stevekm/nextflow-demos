@@ -33,8 +33,8 @@ channels:
   - bioconda
 dependencies:
   - python>=3.11
-  - nextflow>=23.10
-  - nf-core>=2.8
+  - nextflow>=25.10
+  - nf-core>=3.5.0
   # add some extra items for QoL in various Nextflow demos
   - tower-cli
   - jq
