@@ -1,0 +1,4 @@
+sample,fastq_1,fastq_2,strandedness,condition
+Sample1,input/file1-1.txt,input/file1-2.txt,auto,control
+Sample2,input/file2-1.txt,input/file2-2.txt,auto,control
+Sample3,input/file3-1.txt,input/file3-2.txt,auto,control
